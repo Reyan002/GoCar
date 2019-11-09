@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:padding="16dp"
+            android:textSize="18dp"
+            android:textColor="@android:color/black"
+            android:text="FILTERS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+<LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:textSize="12dp"
+        android:fontFamily="sans-serif-thin"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:text="Near BY"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"/>
+    <Switch
+
+
+
+        android:id="@+id/near_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
+        <LinearLayout
+            android:visibility="gone"
+            android:layout_marginTop="10dp"
+android:id="@+id/linar__near"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/one_km"
+                android:textColor="@color/colorPrimary"
+                android:text="1 Km"
+                android:background="@drawable/backbtnborder"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/two_km"
+                android:textColor="@color/colorPrimary"
+                android:text="3 Km"
+                android:background="@drawable/backbtnborder"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/three_km"
+                android:textColor="@color/colorPrimary"
+                android:text="7 Km"
+                android:background="@drawable/backbtnborder"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/four_km"
+                android:textColor="@color/colorPrimary"
+                android:text="10 Km"
+                android:background="@drawable/backbtnborder"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:textSize="12dp"
+                android:fontFamily="sans-serif-thin"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                android:text="Seating Capacity"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+            <Switch
+
+
+                android:id="@+id/seat_switch"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/linear_seat"
+            android:layout_marginTop="10dp"
+            android:visibility="gone"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/two_seats"
+                android:textColor="@color/colorPrimary"
+                android:text="2 Seats"
+                android:background="@drawable/backbtnborder"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/four_seats"
+                android:textColor="@color/colorPrimary"
+                android:text="4 Seats"
+                android:background="@drawable/backbtnborder"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/six_seats"
+                android:textColor="@color/colorPrimary"
+                android:text="6 Seats"
+                android:background="@drawable/backbtnborder"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/seven_seats"
+                android:textColor="@color/colorPrimary"
+                android:text="7 Seats"
+                android:background="@drawable/backbtnborder"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:textSize="12dp"
+                android:fontFamily="sans-serif-thin"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                android:text="Price Range"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+            <Switch
+
+                android:id="@+id/price_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:id="@+id/linear_price"
+            android:visibility="gone"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/five_ph"
+                android:textColor="@color/colorPrimary"
+                android:text="500 P/H"
+                android:background="@drawable/backbtnborder"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/thous_ph"
+                android:textColor="@color/colorPrimary"
+                android:text="1000 P/H"
+                android:background="@drawable/backbtnborder"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/two_thous_ph"
+                android:textColor="@color/colorPrimary"
+                android:text="2000 P/H"
+                android:background="@drawable/backbtnborder"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/five_thous_ph"
+                android:textColor="@color/colorPrimary"
+                android:text="5000 P/H"
+                android:background="@drawable/backbtnborder"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:padding="16dp"
+            android:gravity="end"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textSize="18dp"
+                android:id="@+id/buttonOk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Ok"
+                android:textColor="@color/colorPrimary" />
+            <TextView
+                android:textSize="18dp"
+
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="30dp"
+                android:id="@+id/buttonCanle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Cancle"
+                android:textColor="@color/colorPrimary" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

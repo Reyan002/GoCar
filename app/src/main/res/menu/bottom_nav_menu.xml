@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/title_home_old" />
+
+    <item
+        android:id="@+id/navigation_mycars"
+        android:icon="@drawable/ic_local_car_wash_black_24dp"
+        android:title="@string/title_mycars" />
+
+    <item
+        android:id="@+id/navigation_history"
+        android:icon="@drawable/ic_history_black_24dp"
+        android:title="@string/text_history" />
+    <item
+        android:id="@+id/navigation_mybooking"
+        android:icon="@drawable/ic_bookmark_border_black_24dp"
+        android:title="@string/title_mybooking" />
+    <item
+        android:id="@+id/navigation_myaccount"
+        android:icon="@drawable/ic_account_circle_black_24dp"
+        android:title="@string/text_account" />
+</menu>

@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">GoCar</string>
+    <string name="title_home_old">Home</string>
+    <string name="title_mycars">My Cars</string>
+    <string name="title_mybooking">My Booking</string>
+    <string name="text_history">My History</string>
+    <string name="text_account">My Account</string>
+    <string name="title_activity_new_home">NewHomeActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="inivite_text">Rate Us</string>
+    <string name="logout_text">Log Out</string>
+    <string name="About_text">About Us</string>
+
+
+</resources>
