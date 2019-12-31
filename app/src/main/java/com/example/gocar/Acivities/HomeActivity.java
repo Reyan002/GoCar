@@ -282,7 +282,12 @@ getSupportActionBar().isHideOnContentScrollEnabled();
                             filter.setVisibility(View.GONE);
                             linearLayout.setVisibility(View.VISIBLE);
 
-                            addCar.setVisibility(View.VISIBLE);
+                            if( sessionManager.isLoggedIn())
+                            {
+                                linearLayout.setVisibility(View.VISIBLE);
+                                addCar.setVisibility(View.VISIBLE);
+                            }
+
                             selectFragment= new MyCars();
                             break;
                         case R.id.navigation_history:

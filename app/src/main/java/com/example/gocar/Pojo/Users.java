@@ -11,6 +11,28 @@ package com.example.gocar.Pojo;
         private String latitude;
         private String contact;
         private String message;
+        private String address;
+
+     public Users(String username, String first_name, String last_name, String password, String cnic, String longitude, String latitude, String contact,  String address) {
+         this.username = username;
+         this.first_name = first_name;
+         this.last_name = last_name;
+         this.password = password;
+         this.cnic = cnic;
+         this.longitude = longitude;
+         this.latitude = latitude;
+         this.contact = contact;
+
+         this.address = address;
+     }
+
+     public void setAddress(String address) {
+         this.address = address;
+     }
+
+     public String getAddress() {
+         return address;
+     }
 
      public void setMessage(String message) {
          this.message = message;
@@ -20,16 +42,7 @@ package com.example.gocar.Pojo;
          return message;
      }
 
-     public Users(String username, String first_name, String last_name, String password, String cnic, String longitude, String latitude, String contact) {
-         this.username = username;
-         this.first_name = first_name;
-         this.last_name = last_name;
-         this.password = password;
-         this.cnic = cnic;
-         this.longitude = longitude;
-         this.latitude = latitude;
-         this.contact = contact;
-     }
+
 
      public String getUsername() {
             return username;

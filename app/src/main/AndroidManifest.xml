@@ -23,9 +23,7 @@
 
             ></activity>
 
-        <service
-            android:name=".Location.AppLocationService"
-            android:exported="false" />
+
 
         <activity
             android:name=".Acivities.CarDetailsActivity"

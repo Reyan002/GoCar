@@ -1,27 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-     >
-
-    <GridView
+    tools:context=".Acivities.AddCarActivity">
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-         android:numColumns="3"
-        android:layout_weight="1">
-    </GridView>
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn"
-        android:text="Select Multiple Images"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="10dp"
-        />
+        <Button
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/ic_image_black_24dp"
+            android:textColor="@android:color/white"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/btn"
 
-</LinearLayout>
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            />
+        <GridView
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/gv"
+            android:numColumns="3"
+            android:layout_weight="1">
+        </GridView>
+
+
+    </LinearLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_car_next_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/colorPrimary"
+            app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp"
+            />
+    </RelativeLayout>
+</RelativeLayout>

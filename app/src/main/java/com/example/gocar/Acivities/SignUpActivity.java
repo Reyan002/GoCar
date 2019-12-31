@@ -64,25 +64,27 @@ public class SignUpActivity extends AppCompatActivity {
     private AppLocationService appLocationService;
    private Location gpsLocation;
    private String lat,lon;
+   private String location_text;
 
    private ApiInterface api;
     private FloatingActionButton register;
 
-    private FusedLocationProviderClient client;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_clear_black_24dp);
+        private FusedLocationProviderClient client;
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_sign_up);
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_clear_black_24dp);
 
-        appLocationService = new AppLocationService(
-                SignUpActivity.this);
 
-        initialize();
-        requestPermission();
-        Retrofit retrofit = new Retrofit.Builder()
+            appLocationService = new AppLocationService(
+                    SignUpActivity.this);
+
+            initialize();
+            requestPermission();
+            Retrofit retrofit = new Retrofit.Builder()
 //                .baseUrl("http://72.255.61.208:9001/api/v1/")
-                .baseUrl("http://192.168.0.108:9001/api/v1/")
+                    .baseUrl("http://192.168.0.110:9001/api/v1/")
 
                 .addConverterFactory(GsonConverterFactory.create( ))
                 .build();
@@ -106,7 +108,7 @@ public class SignUpActivity extends AppCompatActivity {
 
 //                   locationtext.setText(getAddress(getApplicationContext(),latitude,longitude));
                 locationtext.setText(getCompleteAddressString(latitude,longitude));
-//
+                   location_text=locationtext.getText().toString();
 //                   try {
 //                       Geocoder geo = new Geocoder(SignUpActivity.this.getApplicationContext(), Locale.getDefault());
 //                       List<Address> addresses = geo.getFromLocation(latitude, longitude, 1);
@@ -182,7 +184,7 @@ public class SignUpActivity extends AppCompatActivity {
                 else {
 
                     //overridePendingTransition(R.anim.push_up_in, R.anim.push_up_out);
-                    postToSignUp(userName.getText().toString(),"","",Pass.getText().toString(),cnic.getText().toString(),lon,lat,"");
+                    postToSignUp(userName.getText().toString(),"","",Pass.getText().toString(),cnic.getText().toString(),lon,lat,"",location_text);
                     Toast.makeText(SignUpActivity.this, "Wellcom New User", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -309,10 +311,10 @@ public class SignUpActivity extends AppCompatActivity {
         return strAdd;
     }
 
-    public void postToSignUp(String userName,String FirstName,String LastName,String Password,String CNIC,String lon,String lat,String Contact ){
+    public void postToSignUp(String userName,String FirstName,String LastName,String Password,String CNIC,String lon,String lat,String Contact ,String address){
 
 
-        Call<Users> call = api.signupUser(new Users(userName,FirstName,LastName,Password,CNIC,lon,lat,Contact));
+        Call<Users> call = api.signupUser(new Users(userName,FirstName,LastName,Password,CNIC,lon,lat,Contact ,address));
         call.enqueue(new Callback<Users>() {
             @Override
             public void onResponse(Call<Users> call, Response<Users> response) {

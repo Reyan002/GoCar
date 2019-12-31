@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.gocar.Classes.DemoClass;
 import com.example.gocar.Pojo.LoginRequest;
 import com.example.gocar.R;
 import com.example.gocar.Rest.ApiInterface;
@@ -96,11 +97,12 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<LoginRequest> call, Response<LoginRequest> response) {
 
-                if (response.isSuccessful()){
+                if (response.code()==200){
                     //loginFailed
                     Toast.makeText(LoginActivity.this, String.valueOf(response.code()), Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(LoginActivity.this,HomeActivity.class));
                     sessionManager.createLoginSession(loginRequest);
+                    DemoClass.pnumber=userPhone.getText().toString();
                 }
                 else{
                     Toast.makeText(LoginActivity.this, String.valueOf(response.code()), Toast.LENGTH_SHORT).show();

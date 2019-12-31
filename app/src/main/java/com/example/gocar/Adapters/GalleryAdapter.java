@@ -1,6 +1,7 @@
 package com.example.gocar.Adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,8 +19,8 @@ public class GalleryAdapter extends BaseAdapter {
     private int pos;
     private LayoutInflater inflater;
     private ImageView ivGallery;
-    ArrayList<Uri> mArrayUri;
-    public GalleryAdapter(Context ctx, ArrayList<Uri> mArrayUri) {
+    ArrayList<Bitmap> mArrayUri;
+    public GalleryAdapter(Context ctx, ArrayList<Bitmap> mArrayUri) {
 
         this.ctx = ctx;
         this.mArrayUri = mArrayUri;
@@ -51,7 +52,7 @@ public class GalleryAdapter extends BaseAdapter {
 
         ivGallery = (ImageView) itemView.findViewById(R.id.ivGallery);
 
-        ivGallery.setImageURI(mArrayUri.get(position));
+        ivGallery.setImageBitmap(mArrayUri.get(position));
 
         return itemView;
     }

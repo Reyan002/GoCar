@@ -1,72 +1,1 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="140dp">-
-<androidx.cardview.widget.CardView
-    android:id="@+id/car_entity"
-    android:layout_margin="0.5dp"
-     android:layout_width="match_parent"
-    android:layout_height="140dp">
-    <LinearLayout
-
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <ImageView
-
-            android:scaleType="fitXY"
-            android:src="@mipmap/car_image_display_foreground"
-
-            android:layout_marginLeft="10dp"
-            android:layout_width="135dp"
-            android:layout_height="135dp"/>
-        <LinearLayout
-
-             android:layout_marginLeft="10dp"
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-            <TextView
-                android:textSize="18dp"
-                android:textColor="@android:color/black"
-                android:id="@+id/rate_car"
-                android:layout_marginTop="5dp"
-                 android:textStyle="bold"
-                android:text="Rs. 1,500"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:textSize="14dp"
-                android:textColor="@android:color/black"
-                android:fontFamily="sans-serif-thin"
-                android:id="@+id/car_name"
-                 android:textStyle="bold"
-                android:text="Suzuki Mehran"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <LinearLayout
-                android:layout_marginTop="65dp"
-                 android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:drawableLeft="@drawable/ic_edit_location_black_24dp"
-                    android:textSize="10dp"
-                    android:textColor="@android:color/black"
-                    android:fontFamily="sans-serif-thin"
-
-                   android:gravity="center"
-
-                    android:id="@+id/car_adrees"
-                    android:textStyle="bold"
-                    android:text="Nazimabad Karachi"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-            </LinearLayout>
-        </LinearLayout>
-
-    </LinearLayout>
-</androidx.cardview.widget.CardView>
-</RelativeLayout>
+<?xml version="1.0" encoding="utf-8"?><RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"    xmlns:app="http://schemas.android.com/apk/res-auto"    android:orientation="vertical"    android:layout_width="match_parent"    android:layout_height="170dp">    <androidx.cardview.widget.CardView        android:id="@+id/car_entity"        android:layout_margin="0.5dp"        android:layout_width="match_parent"         android:layout_height="170dp">        <LinearLayout            android:orientation="vertical"            android:layout_width="match_parent"            android:layout_height="match_parent">            <de.hdodenhof.circleimageview.CircleImageView                  android:id="@+id/profile_image"                android:layout_width="96dp"                android:layout_height="96dp"                android:src="@mipmap/car_image_display_foreground"/>                <TextView                    android:textSize="18dp"                    android:textColor="@android:color/black"                    android:id="@+id/rate_car"                     android:textStyle="bold"                    android:text="Rs. 1,500"                    android:layout_width="match_parent"                    android:layout_height="wrap_content"/>                <TextView                    android:textSize="14dp"                    android:textColor="@android:color/black"                    android:fontFamily="sans-serif-thin"                    android:id="@+id/car_name"                    android:textStyle="bold"                    android:text="Suzuki Mehran"                    android:layout_width="match_parent"                    android:layout_height="wrap_content"/>                    <TextView                        android:drawableLeft="@drawable/ic_edit_location_black_24dp"                        android:textSize="10dp"                        android:textColor="@android:color/black"                        android:fontFamily="sans-serif-thin"                        android:id="@+id/car_adrees"                        android:textStyle="bold"                        android:text="Nazimabad Karachi"                        android:layout_width="match_parent"                        android:layout_height="wrap_content"/>        </LinearLayout>    </androidx.cardview.widget.CardView></RelativeLayout>
