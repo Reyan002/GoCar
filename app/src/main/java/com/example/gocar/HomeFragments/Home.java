@@ -11,14 +11,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gocar.Adapters.MycarsAdapter;
 import com.example.gocar.Classes.AllActiveVehicle;
+import com.example.gocar.Classes.FcmRequest;
 import com.example.gocar.R;
 import com.example.gocar.Rest.ApiInterface;
 import com.example.gocar.SessionManager.SessionManager;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.List;
 
@@ -41,8 +42,8 @@ public class Home extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View Root= inflater.inflate(R.layout.home_fragment,container,false);
         Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl("http://72.255.61.208:9001/api/v1/")
-                .baseUrl("http://192.168.0.112:9001/api/v1/")
+                .baseUrl("http://72.255.61.208:9001/api/v1/")
+//                .baseUrl("http://192.168.0.109:9001/api/v1/")
 
                 .addConverterFactory(GsonConverterFactory.create( ))
                 .build();
@@ -53,9 +54,26 @@ public class Home extends Fragment {
 
         getAllProperty();
 
+        tokenG();
 
         return Root;
     }
+    public void tokenG(){
+        Call<FcmRequest> call=api.token(new FcmRequest("12",FirebaseInstanceId.getInstance().getToken()));
+        call.enqueue(new Callback<FcmRequest>() {
+            @Override
+            public void onResponse(Call<FcmRequest> call, Response<FcmRequest> response) {
+                if(response.isSuccessful()){  Toast.makeText(getContext(), "Error NOt", Toast.LENGTH_SHORT).show();}
+                Toast.makeText(getContext(), String.valueOf(response.code()), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<FcmRequest> call, Throwable t) {
+                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     public void getAllProperty(){
 
 

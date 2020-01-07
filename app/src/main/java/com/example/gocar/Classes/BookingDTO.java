@@ -8,8 +8,9 @@ public class BookingDTO {
     private String start;
     private String end;
     private Float rentPerHour;
+    private String bookingTime;
 
-    public BookingDTO(Integer bookingId, String vehicleNumber, String sellerId, String customerId, String start, String end, Float rentPerHour) {
+    public BookingDTO(Integer bookingId, String vehicleNumber, String sellerId, String customerId, String start, String end, Float rentPerHour, String bookingTime) {
         this.bookingId = bookingId;
         this.vehicleNumber = vehicleNumber;
         this.sellerId = sellerId;
@@ -17,6 +18,15 @@ public class BookingDTO {
         this.start = start;
         this.end = end;
         this.rentPerHour = rentPerHour;
+        this.bookingTime = bookingTime;
+    }
+
+    public String getBookingTime() {
+        return bookingTime;
+    }
+
+    public void setBookingTime(String bookingTime) {
+        this.bookingTime = bookingTime;
     }
 
     public Integer getBookingId() {

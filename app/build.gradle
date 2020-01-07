@@ -4,13 +4,12 @@ android {
     compileSdkVersion 29
     defaultConfig {
         applicationId "com.example.gocar"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
-        vectorDrawables.useSupportLibrary = true
+         vectorDrawables.useSupportLibrary = true
 
     }
     buildTypes {
@@ -20,10 +19,14 @@ android {
         }
     }
 }
-
+apply plugin: 'com.android.application'
 dependencies {
     def room_version = "2.2.0"
+    implementation 'com.github.jjobes:slideDateTimePicker:1.0.2'
+
+
     implementation 'de.hdodenhof:circleimageview:3.0.1'
+    implementation 'com.github.florent37:singledateandtimepicker:1.1.0'
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
     // For Kotlin use kapt instead of annotationProcessor
@@ -55,8 +58,11 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment:2.0.0'
     implementation 'androidx.navigation:navigation-ui:2.0.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+    implementation 'com.google.firebase:firebase-messaging:20.0.1'
+    implementation 'com.android.support:multidex:1.0.3'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 }
+apply plugin: 'com.google.gms.google-services'

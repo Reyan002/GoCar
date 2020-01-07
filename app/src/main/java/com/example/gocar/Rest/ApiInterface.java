@@ -2,6 +2,7 @@ package com.example.gocar.Rest;
 
 import com.example.gocar.Classes.AllActiveVehicle;
 import com.example.gocar.Classes.BookingDTO;
+import com.example.gocar.Classes.FcmRequest;
 import com.example.gocar.Classes.VehicleRequest;
 import com.example.gocar.Pojo.LoginRequest;
 import com.example.gocar.Pojo.Users;
@@ -36,6 +37,8 @@ public interface ApiInterface {
 
 @POST("login")
     Call<LoginRequest> userLogin(@Body LoginRequest loginRequest);
+    @POST("notification/register")
+    Call<FcmRequest> token(@Body FcmRequest fcmRequest);
 
     @Headers({ "Content-Type: application/json"})
  @POST("profile/vehicles")
@@ -57,9 +60,9 @@ public interface ApiInterface {
 
     @Headers({ "Content-Type: application/json"})
     @GET("bookings/customer")
-    Call<List<AllActiveVehicle>> BookingAsASeller (@Query("username") String username , @Query("status") String status);
+    Call<List<BookingDTO>> BookingAsASeller (@Query("username") String username , @Query("status") String status);
     @Headers({ "Content-Type: application/json"})
     @GET("bookings/seller")
-    Call<List<AllActiveVehicle>> BookingOutAsACustomer (@Query("username") String username, @Query("status") String status);
+    Call<List<BookingDTO>> BookingOutAsACustomer (@Query("username") String username, @Query("status") String status);
 
 }

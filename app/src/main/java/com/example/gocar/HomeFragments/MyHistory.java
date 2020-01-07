@@ -12,7 +12,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.gocar.BookingFragment.ApprovedIn;
 import com.example.gocar.BookingFragment.ApprovedOut;
+import com.example.gocar.BookingFragment.PendingIn;
 import com.example.gocar.BookingFragment.PendingOut;
 import com.example.gocar.R;
 import com.google.android.material.tabs.TabLayout;
@@ -39,8 +41,8 @@ public class MyHistory extends Fragment {
 
   private void setupViewPager(ViewPager viewPager) {
     ViewPagerAdapterIn adapter = new ViewPagerAdapterIn(getFragmentManager());
-    adapter.addFragment(new PendingOut(), "Pending");
-    adapter.addFragment(new ApprovedOut(), "Approved");
+    adapter.addFragment(new PendingIn(), "Pending");
+    adapter.addFragment(new ApprovedIn(), "Approved");
 
 
     viewPager.setAdapter(adapter);

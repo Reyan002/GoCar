@@ -39,6 +39,7 @@
             android:parentActivityName=".Acivities.LoginActivity" />
         <activity android:name=".Acivities.HomeActivity" />
         <activity
+
             android:name=".Acivities.SplashScreen"
             android:theme="@style/Theme.Design.Light.NoActionBar">
             <intent-filter>

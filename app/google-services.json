@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1013496699911",
+    "firebase_url": "https://go-car-2b57a.firebaseio.com",
+    "project_id": "go-car-2b57a",
+    "storage_bucket": "go-car-2b57a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1013496699911:android:64a7dffc9a16b11c2d9ea2",
+        "android_client_info": {
+          "package_name": "com.example.gocar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1013496699911-jv8e8j59lplovinio43c09oo7ncj8bfg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPmhro_BVBlWn7xotZyeRrbxgyg6l2OIw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1013496699911-jv8e8j59lplovinio43c09oo7ncj8bfg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

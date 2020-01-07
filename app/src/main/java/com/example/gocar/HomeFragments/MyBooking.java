@@ -56,7 +56,7 @@ public class MyBooking extends Fragment {
 
 
     viewPager = (ViewPager) rootView.findViewById(R.id.viewpager);
-    //setupViewPager(viewPager);
+     setupViewPager(viewPager);
 
     tabLayout = rootView.findViewById(R.id.tabs);
     tabLayout.setupWithViewPager(viewPager);
