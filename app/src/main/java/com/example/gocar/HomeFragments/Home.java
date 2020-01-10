@@ -42,8 +42,8 @@ public class Home extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View Root= inflater.inflate(R.layout.home_fragment,container,false);
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://72.255.61.208:9001/api/v1/")
-//                .baseUrl("http://192.168.0.109:9001/api/v1/")
+//                .baseUrl("http://72.255.61.208:9001/api/v1/")
+                .baseUrl("http://192.168.0.108:9001/api/v1/")
 
                 .addConverterFactory(GsonConverterFactory.create( ))
                 .build();
@@ -54,25 +54,11 @@ public class Home extends Fragment {
 
         getAllProperty();
 
-        tokenG();
+
 
         return Root;
     }
-    public void tokenG(){
-        Call<FcmRequest> call=api.token(new FcmRequest("12",FirebaseInstanceId.getInstance().getToken()));
-        call.enqueue(new Callback<FcmRequest>() {
-            @Override
-            public void onResponse(Call<FcmRequest> call, Response<FcmRequest> response) {
-                if(response.isSuccessful()){  Toast.makeText(getContext(), "Error NOt", Toast.LENGTH_SHORT).show();}
-                Toast.makeText(getContext(), String.valueOf(response.code()), Toast.LENGTH_SHORT).show();
-            }
 
-            @Override
-            public void onFailure(Call<FcmRequest> call, Throwable t) {
-                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
 
     public void getAllProperty(){
 
@@ -133,4 +119,5 @@ public class Home extends Fragment {
 
 
     }
+
 }

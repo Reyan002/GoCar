@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1013496699911-nnm246qtn8ibs8om957hrer7qus6terv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gocar",
+            "certificate_hash": "d94bf7f8740fd9dd5142ef803da33b751d52c5a2"
+          }
+        },
+        {
           "client_id": "1013496699911-jv8e8j59lplovinio43c09oo7ncj8bfg.apps.googleusercontent.com",
           "client_type": 3
         }

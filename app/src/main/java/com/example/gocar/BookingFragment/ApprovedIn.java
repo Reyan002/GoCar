@@ -15,6 +15,7 @@ import com.example.gocar.Classes.BookingDTO;
 import com.example.gocar.R;
 import com.example.gocar.Rest.ApiInterface;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -44,16 +45,18 @@ public class ApprovedIn extends Fragment {
         View view=inflater.inflate(R.layout.lyout_approved, container, false);
         Retrofit retrofit = new Retrofit.Builder()
 //                .baseUrl("http://72.255.61.208:9001/api/v1/")
-                .baseUrl("http://192.168.0.109:9001/api/v1/")
+                .baseUrl("http://192.168.0.108:9001/api/v1/")
 
                 .addConverterFactory(GsonConverterFactory.create( ))
                 .build();
         api=retrofit.create(ApiInterface.class);
+
         recyclerView = view.findViewById(R.id.rrBookingInAP);
 
         getApprovedAsASeller();
         return view;
     }
+
     public void getApprovedAsASeller(){
 
         Call<List<BookingDTO>> call = api.BookingAsASeller("12","Approved") ;
@@ -62,16 +65,14 @@ public class ApprovedIn extends Fragment {
             public void onResponse(Call<List<BookingDTO>> call, Response<List<BookingDTO>> response) {
 
                 if(response.isSuccessful()){
-                    Toast.makeText(getContext(), String.valueOf(response.code()), Toast.LENGTH_LONG).show();
-                    if(response.isSuccessful()){
+
                         myListcar=response.body();
                           recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
                          mycarsAdapter=new BookingAdapter(myListcar,getContext());
                         recyclerView.setAdapter(mycarsAdapter);
-                    }
-                    else{
-                        Toast.makeText(getContext(), String.valueOf(response.code()), Toast.LENGTH_LONG).show();
-                    }
+                        mycarsAdapter.notifyDataSetChanged();
+
+
 
                 }
                 else{
@@ -88,5 +89,12 @@ public class ApprovedIn extends Fragment {
         });
 
 
+    }
+
+    @Override
+    public void onStart() {
+
+        super.onStart();
+        getApprovedAsASeller();
     }
 }

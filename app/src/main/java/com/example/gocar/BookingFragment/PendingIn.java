@@ -42,7 +42,7 @@ public class PendingIn extends Fragment {
         View view = inflater.inflate(R.layout.layout_pending, container, false);
         Retrofit retrofit = new Retrofit.Builder()
 //                .baseUrl("http://72.255.61.208:9001/api/v1/")
-                .baseUrl("http://192.168.0.109:9001/api/v1/")
+                .baseUrl("http://192.168.0.108:9001/api/v1/")
 
                 .addConverterFactory(GsonConverterFactory.create( ))
                 .build();
@@ -78,5 +78,11 @@ public class PendingIn extends Fragment {
         });
 
 
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+    getPendingAsASeller();
     }
 }

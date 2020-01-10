@@ -31,7 +31,7 @@ public class MyHistory extends Fragment {
     View view=inflater.inflate(R.layout.history_fragment,container,false);
 
     viewPager = (ViewPager) view.findViewById(R.id.viewpagerIn);
-    setupViewPager(viewPager);
+   // setupViewPager(viewPager);
 
     tabLayout = view.findViewById(R.id.tabIn);
     tabLayout.setupWithViewPager(viewPager);
