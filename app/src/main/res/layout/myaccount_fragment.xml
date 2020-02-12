@@ -28,4 +28,59 @@
            android:layout_width="match_parent"
            android:layout_height="wrap_content"/>
    </LinearLayout>
+<Button
+    android:visibility="gone"
+    android:id="@+id/pupdate"
+    android:textColor="@color/colorPrimary"
+    android:text="UPDATE ProFILE"
+    style="@style/Widget.AppCompat.Button.Borderless"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:id="@+id/pll"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ppick"
+            android:layout_gravity="center"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/ic_image_black_24dp"/>
+        <TextView
+            android:id="@+id/puname"
+            android:layout_margin="10dp"
+            android:textAlignment="center"
+            android:textSize="20dp"
+            android:text="User Name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/pname"
+            android:layout_margin="10dp"
+            android:textAlignment="center"
+            android:textSize="20dp"
+            android:text="Full Name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/pcnic"
+            android:layout_margin="10dp"
+            android:textAlignment="center"
+            android:textSize="20dp"
+            android:text="CNIC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/pcon"
+            android:layout_margin="10dp"
+            android:textAlignment="center"
+            android:textSize="20dp"
+            android:text="Contact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
 </RelativeLayout>

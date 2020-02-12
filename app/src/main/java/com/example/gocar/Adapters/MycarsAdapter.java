@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gocar.Acivities.CarDetailsActivity;
 import com.example.gocar.Classes.AllActiveVehicle;
+import com.example.gocar.Classes.DemoClass;
 import com.example.gocar.R;
 
 import java.util.ArrayList;
@@ -49,10 +50,12 @@ public class MycarsAdapter extends RecyclerView.Adapter<MycarsAdapter.ViewHolder
         holder.carName.setText(cars.getVehicle_name());
         holder.carRate.setText( cars.getRent_per_hour() +" PKR");
         holder.carAdres.setText(address);
+
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(v.getContext(), CarDetailsActivity.class);
+                DemoClass.images=cars.getImages();
                 intent.putExtra("vid",cars.getVehicle_number());
                 intent.putExtra("vname",cars.getVehicle_name());
                 intent.putExtra("address",address);

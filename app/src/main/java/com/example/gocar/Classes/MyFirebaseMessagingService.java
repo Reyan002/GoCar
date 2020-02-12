@@ -36,6 +36,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
         // ...
 
+
         // TODO(developer): Handle FCM messages here.
         // Not getting messages here? See why this may be: https://goo.gl/39bRNJ
         Log.d(TAG, "From: " + remoteMessage.getFrom());
@@ -71,7 +72,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
 
             NotificationManager notificationManager= (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-            notificationManager.notify(0,notifyBuilder.build()) ;
+//            notificationManager.notify(0,notifyBuilder.build()) ;
 
 
 

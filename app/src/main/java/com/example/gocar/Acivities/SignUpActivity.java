@@ -1,11 +1,5 @@
 package com.example.gocar.Acivities;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,11 +7,8 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
-import android.net.wifi.hotspot2.ConfigParser;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.provider.Settings;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -25,34 +16,34 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
 import com.example.gocar.Location.AppLocationService;
-import com.example.gocar.Location.LocationAddress;
 import com.example.gocar.Pojo.Users;
 import com.example.gocar.R;
 import com.example.gocar.Rest.ApiInterface;
 import com.example.gocar.Rest.ApiUtils;
-import com.example.gocar.Rest.RetrofitClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 
@@ -65,7 +56,8 @@ public class SignUpActivity extends AppCompatActivity {
    private Location gpsLocation;
    private String lat,lon;
    private String location_text;
-
+    private static final String EMAIL_PATTERN =
+            "^((\\+92)|(0092))-{0,1}\\d{3}-{0,1}\\d{7}$|^\\d{11}$|^\\d{4}-\\d{7}$";
    private ApiInterface api;
     private FloatingActionButton register;
 
@@ -82,15 +74,15 @@ public class SignUpActivity extends AppCompatActivity {
 
             initialize();
             requestPermission();
-            Retrofit retrofit = new Retrofit.Builder()
+//            Retrofit retrofit = new Retrofit.Builder()
 //                .baseUrl("http://72.255.61.208:9001/api/v1/")
-                    .baseUrl("http://192.168.0.110:9001/api/v1/")
+////                    .baseUrl("http://192.168.137.1:9001/api/v1/")
+//
+//                .addConverterFactory(GsonConverterFactory.create( ))
+//                .build();
+//        api=retrofit.create(ApiInterface.class);
 
-                .addConverterFactory(GsonConverterFactory.create( ))
-                .build();
-        api=retrofit.create(ApiInterface.class);
-
-
+api=ApiUtils.getAPIService();
 
         client= LocationServices.getFusedLocationProviderClient(this);
         location.setOnClickListener(new View.OnClickListener() {
@@ -171,8 +163,17 @@ public class SignUpActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+                Matcher matcher = pattern.matcher(userName.getText().toString());
+
                 if (isEmpty(userName)) {
                     userName.setError("Name is Required");
+                }
+                if(Pass.getText().toString().length()<6){
+                    Toast.makeText(SignUpActivity.this, "Password must be greater then 6 digits", Toast.LENGTH_SHORT).show();
+                }
+                if(!Conpass.getText().toString().equals(Pass.getText().toString())){
+                    Toast.makeText(SignUpActivity.this, "Password not Mached", Toast.LENGTH_SHORT).show();
                 }
 
                 if (isEmpty(Pass)) {
@@ -184,9 +185,17 @@ public class SignUpActivity extends AppCompatActivity {
                 else {
 
                     //overridePendingTransition(R.anim.push_up_in, R.anim.push_up_out);
-                    postToSignUp(userName.getText().toString(),"","",Pass.getText().toString(),cnic.getText().toString(),lon,lat,"",location_text);
-                    Toast.makeText(SignUpActivity.this, "Wellcom New User", Toast.LENGTH_SHORT).show();
+                    if (matcher.find()) {
+                        String email = userName.getText().toString().substring(matcher.start(), matcher.end());
+                        postToSignUp(userName.getText().toString(),"","",Pass.getText().toString(),cnic.getText().toString(),lon,lat,location_text,email,"");
+
+                    }
+                    else {
+                        Toast.makeText(SignUpActivity.this, "Phone No is Not Valid", Toast.LENGTH_SHORT).show();
+                    }
                 }
+
+
             }
         });
 
@@ -311,28 +320,27 @@ public class SignUpActivity extends AppCompatActivity {
         return strAdd;
     }
 
-    public void postToSignUp(String userName,String FirstName,String LastName,String Password,String CNIC,String lon,String lat,String Contact ,String address){
+    public void postToSignUp(String userName,String FirstName,String LastName,String Password,String CNIC,String lon,String lat,String Contact ,String address,String dp){
 
 
-        Call<Users> call = api.signupUser(new Users(userName,FirstName,LastName,Password,CNIC,lon,lat,Contact ,address));
+        Call<Users> call = api.signupUser(new Users(userName,FirstName,LastName,Password,CNIC,Float.valueOf(lon),Float.valueOf(lat),Contact ,address,dp));
         call.enqueue(new Callback<Users>() {
             @Override
             public void onResponse(Call<Users> call, Response<Users> response) {
                 if(response.code()==400){
                     //user credential errors
-                    Toast.makeText(SignUpActivity.this, response.message(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUpActivity.this, "credential", Toast.LENGTH_SHORT).show();
 
                 }
                 if(response.code()==409){
                     //already exist
-                    Toast.makeText(SignUpActivity.this, response.message(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUpActivity.this,"Exist", Toast.LENGTH_SHORT).show();
 
 
                 }
 
                 if( response.code()==200){
-                    Toast.makeText(SignUpActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(SignUpActivity.this,LoginActivity.class));
+                     startActivity(new Intent(SignUpActivity.this,LoginActivity.class));
                 }
                 else{
                     Toast.makeText(SignUpActivity.this, response.message(), Toast.LENGTH_SHORT).show();
@@ -350,4 +358,5 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
     }
+
 }

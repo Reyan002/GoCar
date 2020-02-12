@@ -23,6 +23,7 @@ import com.example.gocar.Classes.Cars;
 import com.example.gocar.Classes.DemoClass;
 import com.example.gocar.R;
 import com.example.gocar.Rest.ApiInterface;
+import com.example.gocar.Rest.ApiUtils;
 import com.example.gocar.SessionManager.SessionManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -55,15 +56,15 @@ public class MyCars extends Fragment {
         View root= inflater.inflate(R.layout.mycars_fragment,container,false);
         sessionManager=new SessionManager(getContext());
         linearLayout=root.findViewById(R.id.loginLinearLayoutMyCar);
-        Retrofit retrofit = new Retrofit.Builder()
+//        Retrofit retrofit = new Retrofit.Builder()
 //                .baseUrl("http://72.255.61.208:9001/api/v1/")
-                .baseUrl("http://192.168.0.108:9001/api/v1/")
+////                .baseUrl("http://192.168.0.107:9001/api/v1/")
+//
+//                .addConverterFactory(GsonConverterFactory.create( ))
+//                .build();
+//        api=retrofit.create(ApiInterface.class);
 
-                .addConverterFactory(GsonConverterFactory.create( ))
-                .build();
-        api=retrofit.create(ApiInterface.class);
-
-
+api= ApiUtils.getAPIService();
 
 
         recyclerView = root.findViewById(R.id.mycars);

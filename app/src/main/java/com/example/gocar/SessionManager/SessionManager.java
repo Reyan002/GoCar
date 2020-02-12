@@ -87,16 +87,15 @@ public class SessionManager {
     /**
      * Get stored session data
      * */
-    public HashMap<String, String> getUserDetails(){
-        HashMap<String, String> user = new HashMap<String, String>();
-        // user name
-        user.put(KEY_NAME, pref.getString(KEY_NAME, null));
-
-        // user email id
-        user.put(KEY_EMAIL, pref.getString(KEY_EMAIL, null));
+    public String getUserDetails(){
+         // user name
+//        user.put(KEY_NAME, pref.getString(KEY_NAME, null));
+//
+//        // user email id
+//        user.put(KEY_EMAIL, pref.getString(KEY_EMAIL, null));
 
         // return user
-        return user;
+        return pref.getString(KEY_NAME,null);
     }
 
     /**

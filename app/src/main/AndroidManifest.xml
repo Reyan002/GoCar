@@ -7,9 +7,10 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:hardwareAccelerated="true"
-        android:allowBackup="true"
+         android:allowBackup="true"
+        android:usesCleartextTraffic="true"
         android:appComponentFactory="whateverString"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
@@ -17,14 +18,11 @@
         android:supportsRtl="true"
         android:theme="@style/Base.AppTheme"
         tools:replace="android:appComponentFactory">
-        <activity android:name=".Acivities.AddCarActivity"
+        <activity android:name=".Acivities.UpdateProfile"></activity>
+        <activity
+            android:name=".Acivities.AddCarActivity"
             android:launchMode="singleTop"
-            android:parentActivityName=".Acivities.HomeActivity"
-
-            ></activity>
-
-
-
+            android:parentActivityName=".Acivities.HomeActivity" />
         <activity
             android:name=".Acivities.CarDetailsActivity"
             android:launchMode="singleTop"
@@ -39,7 +37,6 @@
             android:parentActivityName=".Acivities.LoginActivity" />
         <activity android:name=".Acivities.HomeActivity" />
         <activity
-
             android:name=".Acivities.SplashScreen"
             android:theme="@style/Theme.Design.Light.NoActionBar">
             <intent-filter>
@@ -48,7 +45,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
 
         <service android:name=".Classes.MyFirebaseMessagingService">
             <intent-filter>

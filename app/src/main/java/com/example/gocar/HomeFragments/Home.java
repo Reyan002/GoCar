@@ -18,6 +18,7 @@ import com.example.gocar.Classes.AllActiveVehicle;
 import com.example.gocar.Classes.FcmRequest;
 import com.example.gocar.R;
 import com.example.gocar.Rest.ApiInterface;
+import com.example.gocar.Rest.ApiUtils;
 import com.example.gocar.SessionManager.SessionManager;
 import com.google.firebase.iid.FirebaseInstanceId;
 
@@ -41,13 +42,14 @@ public class Home extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View Root= inflater.inflate(R.layout.home_fragment,container,false);
-        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl("http://72.255.61.208:9001/api/v1/")
-                .baseUrl("http://192.168.0.108:9001/api/v1/")
-
-                .addConverterFactory(GsonConverterFactory.create( ))
-                .build();
-        api=retrofit.create(ApiInterface.class);
+//        Retrofit retrofit = new Retrofit.Builder()
+////                .baseUrl("http://72.255.61.208:9001/api/v1/")
+//                .baseUrl("http://192.168.43.76:9001/api/v1/")
+//
+//                .addConverterFactory(GsonConverterFactory.create( ))
+//                .build();
+//        api=retrofit.create(ApiInterface.class);
+        api= ApiUtils.getAPIService();
         recyclerView = Root.findViewById(R.id.recyclerview);
 
 

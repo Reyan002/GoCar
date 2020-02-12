@@ -16,17 +16,22 @@ tools:context=".Acivities.SplashScreen"
         android:layout_height="200dp"
 
      />
-    <TextView
+    <EditText
+
+        android:hint="IP Adress "
         android:layout_margin="20dp"
         android:layout_below="@id/logo"
         android:id="@+id/fullscreen_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:keepScreenOn="true"
-        android:text="Go Car"
-        android:textColor="#33b5e5"
-        android:textSize="30sp"
-        android:textStyle="bold" />
 
+      />
+
+    <Button
+        android:id="@+id/next"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/fullscreen_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 </RelativeLayout>

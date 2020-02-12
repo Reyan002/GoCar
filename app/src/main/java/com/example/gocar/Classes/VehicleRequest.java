@@ -1,5 +1,8 @@
 package com.example.gocar.Classes;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class VehicleRequest {
 
     private String vehicle_number;
@@ -11,13 +14,10 @@ public class VehicleRequest {
     private String fuel;
     private String username;
     private float rent_per_hour;
+    private List<String> images;
 
 
-
-    public VehicleRequest() {
-    }
-
-    public VehicleRequest(String vehicle_number, String vehicle_name, int model, int seating_capacity, int cc, String status, String fuel, String username, float rent_per_hour) {
+    public VehicleRequest(String vehicle_number, String vehicle_name, int model, int seating_capacity, int cc, String status, String fuel, String username, float rent_per_hour, List<String> images) {
         this.vehicle_number = vehicle_number;
         this.vehicle_name = vehicle_name;
         this.model = model;
@@ -27,6 +27,18 @@ public class VehicleRequest {
         this.fuel = fuel;
         this.username = username;
         this.rent_per_hour = rent_per_hour;
+        this.images = images;
+    }
+
+    public VehicleRequest() {
+    }
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(ArrayList<String> images) {
+        this.images = images;
     }
 
     public void setFuel(String fuel) {

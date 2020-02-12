@@ -3,7 +3,6 @@ package com.example.gocar.Acivities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +18,8 @@ import com.example.gocar.R;
 import com.example.gocar.Rest.ApiInterface;
 import com.example.gocar.Rest.ApiUtils;
 import com.example.gocar.SessionManager.SessionManager;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -41,14 +42,19 @@ public class LoginActivity extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_clear_black_24dp);
 
 
-        initialize();
-        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl("http://72.255.61.208:9001/api/v1/")
-               .baseUrl("http://192.168.0.108:9001/api/v1/")
+// and in you adapter set this instance
 
-                .addConverterFactory(GsonConverterFactory.create( ))
-                .build();
-       api=retrofit.create(ApiInterface.class);
+
+        initialize();
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl("http://72.255.61.208:9001/api/v1/")
+//
+////               .baseUrl("http://192.168.137.1:9001/api/v1/")
+//
+//                .addConverterFactory(GsonConverterFactory.create(  ))
+//                .build();
+//       api=retrofit.create(ApiInterface.class);
+       api= ApiUtils.getAPIService();
         creatNewAccountr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

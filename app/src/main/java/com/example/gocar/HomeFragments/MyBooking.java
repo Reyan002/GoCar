@@ -17,6 +17,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.gocar.Acivities.LoginActivity;
+import com.example.gocar.BookingFragment.ApprovedIn;
 import com.example.gocar.BookingFragment.ApprovedOut;
 import com.example.gocar.BookingFragment.PendingIn;
 import com.example.gocar.BookingFragment.PendingOut;
@@ -61,14 +62,27 @@ public class MyBooking extends Fragment {
     tabLayout = rootView.findViewById(R.id.tabs);
     tabLayout.setupWithViewPager(viewPager);
 
+    tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+      @Override
+      public void onTabSelected(TabLayout.Tab tab) {
+        viewPager.setCurrentItem(tab.getPosition());
+      }
+
+      @Override
+      public void onTabUnselected(TabLayout.Tab tab) {
+
+      }
+
+      @Override
+      public void onTabReselected(TabLayout.Tab tab) {
+
+      }
+    });
     return rootView;
   }
 
   private void setupViewPager(ViewPager viewPager) {
     ViewPagerAdapter adapter = new ViewPagerAdapter(getFragmentManager());
-    adapter.addFragment(new PendingOut(), "Pending");
-    adapter.addFragment(new ApprovedOut(), "Approved");
-
 
     viewPager.setAdapter(adapter);
   }
@@ -76,31 +90,35 @@ public class MyBooking extends Fragment {
 
 
   class ViewPagerAdapter extends FragmentPagerAdapter {
-    private final List<Fragment> mFragmentList = new ArrayList<>();
-    private final List<String> mFragmentTitleList = new ArrayList<>();
-
-    public ViewPagerAdapter(FragmentManager manager) {
-      super(manager);
+    public ViewPagerAdapter(FragmentManager fm) {
+      super(fm);
     }
 
     @Override
     public Fragment getItem(int position) {
-      return mFragmentList.get(position);
+      switch (position) {
+        case 0:
+          return new PendingIn();
+        case 1:
+        default:
+          return new ApprovedIn();
+      }
     }
 
     @Override
     public int getCount() {
-      return mFragmentList.size();
-    }
-
-    public void addFragment(Fragment fragment, String title) {
-      mFragmentList.add(fragment);
-      mFragmentTitleList.add(title);
+      return 2;
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
-      return mFragmentTitleList.get(position);
+      switch (position) {
+        case 0:
+          return "Pending";
+        case 1:
+        default:
+          return "Approved";
+      }
     }
   }
 }

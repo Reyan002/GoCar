@@ -1,7 +1,10 @@
 package com.example.gocar.Classes;
 
+import java.util.ArrayList;
+
 public class AllActiveVehicle {
     private String cc;
+    private ArrayList<String> images;
 
     private String username;
 
@@ -18,6 +21,14 @@ public class AllActiveVehicle {
     private String vehicle_name;
 
     private String status;
+
+    public ArrayList<String> getImages() {
+        return images;
+    }
+
+    public void setImages(ArrayList<String> images) {
+        this.images = images;
+    }
 
     public String getCc ()
     {

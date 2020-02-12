@@ -12,6 +12,7 @@ import com.example.gocar.Classes.AllActiveVehicle;
 import com.example.gocar.Classes.BookingDTO;
 import com.example.gocar.R;
 import com.example.gocar.Rest.ApiInterface;
+import com.example.gocar.Rest.ApiUtils;
 
 import java.util.List;
 
@@ -39,13 +40,14 @@ public class PendingOut extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.layout_pending, container, false);
 
-        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl("http://72.255.61.208:9001/api/v1/")
-                .baseUrl("http://192.168.0.108:9001/api/v1/")
-
-                .addConverterFactory(GsonConverterFactory.create( ))
-                .build();
-        api=retrofit.create(ApiInterface.class);
+//        Retrofit retrofit = new Retrofit.Builder()
+////                .baseUrl("http://72.255.61.208:9001/api/v1/")
+//                .baseUrl("http://192.168.0.109:9001/api/v1/")
+//
+//                .addConverterFactory(GsonConverterFactory.create( ))
+//                .build();
+//        api=retrofit.create(ApiInterface.class);
+        api= ApiUtils.getAPIService();
         getPendingAsACustomer();
          return view;
 

@@ -11,6 +11,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
@@ -22,7 +23,8 @@ public interface ApiInterface {
 //
 //    @GET("users")
 //    Call<Users> getUser(@Query("username") String username);
-    @Headers("Content-Type: application/json")
+//    @Headers("Content-Type: application/json")
+    @Headers({"Content-Type: application/json","Accept: application/json"})
     @POST("users")
       Call<Users> signupUser(@Body Users users);
 //    Call<Users> signupUser(@Field("username") String username,
@@ -33,9 +35,13 @@ public interface ApiInterface {
 //                        @Field("longitude") String longitude,
 //                        @Field("latitude") String latitude,
 //                        @Field("contact") String contact );
- //@Headers({"Content-Type: application/json","Accept: application/json"})
+ //
+//@Headers("Content-Type: application/json")
 
-@POST("login")
+
+    @Headers({"Content-Type: application/json","Accept: application/json"})
+    @POST("login")
+
     Call<LoginRequest> userLogin(@Body LoginRequest loginRequest);
     @POST("notification/register")
     Call<FcmRequest> token(@Body FcmRequest fcmRequest);
@@ -59,10 +65,10 @@ public interface ApiInterface {
   Call<List<AllActiveVehicle>> myVehicles(@Query("username") String username);
 
     @Headers({ "Content-Type: application/json"})
-    @GET("bookings/customer")
+    @GET("bookings/seller")
     Call<List<BookingDTO>> BookingAsASeller (@Query("username") String username , @Query("status") String status);
     @Headers({ "Content-Type: application/json"})
-    @GET("bookings/seller")
+    @GET("bookings/customer")
     Call<List<BookingDTO>> BookingOutAsACustomer (@Query("username") String username, @Query("status") String status);
 
 }

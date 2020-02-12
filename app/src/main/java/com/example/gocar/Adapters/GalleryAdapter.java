@@ -19,8 +19,8 @@ public class GalleryAdapter extends BaseAdapter {
     private int pos;
     private LayoutInflater inflater;
     private ImageView ivGallery;
-    ArrayList<Bitmap> mArrayUri;
-    public GalleryAdapter(Context ctx, ArrayList<Bitmap> mArrayUri) {
+    ArrayList<Uri> mArrayUri;
+    public GalleryAdapter(Context ctx, ArrayList<Uri> mArrayUri) {
 
         this.ctx = ctx;
         this.mArrayUri = mArrayUri;
@@ -52,7 +52,7 @@ public class GalleryAdapter extends BaseAdapter {
 
         ivGallery = (ImageView) itemView.findViewById(R.id.ivGallery);
 
-        ivGallery.setImageBitmap(mArrayUri.get(position));
+        ivGallery.setImageURI(mArrayUri.get(position));
 
         return itemView;
     }

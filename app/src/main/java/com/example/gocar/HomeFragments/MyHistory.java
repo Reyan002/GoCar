@@ -31,18 +31,32 @@ public class MyHistory extends Fragment {
     View view=inflater.inflate(R.layout.history_fragment,container,false);
 
     viewPager = (ViewPager) view.findViewById(R.id.viewpagerIn);
-   // setupViewPager(viewPager);
+   setupViewPager(viewPager);
 
     tabLayout = view.findViewById(R.id.tabIn);
     tabLayout.setupWithViewPager(viewPager);
 
+    tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+      @Override
+      public void onTabSelected(TabLayout.Tab tab) {
+        viewPager.setCurrentItem(tab.getPosition());
+      }
+
+      @Override
+      public void onTabUnselected(TabLayout.Tab tab) {
+
+      }
+
+      @Override
+      public void onTabReselected(TabLayout.Tab tab) {
+
+      }
+    });
     return view;
   }
 
   private void setupViewPager(ViewPager viewPager) {
     ViewPagerAdapterIn adapter = new ViewPagerAdapterIn(getFragmentManager());
-    adapter.addFragment(new PendingIn(), "Pending");
-    adapter.addFragment(new ApprovedIn(), "Approved");
 
 
     viewPager.setAdapter(adapter);
@@ -51,31 +65,35 @@ public class MyHistory extends Fragment {
 
 
   class ViewPagerAdapterIn extends FragmentPagerAdapter {
-    private final List<Fragment> mFragmentList = new ArrayList<>();
-    private final List<String> mFragmentTitleList = new ArrayList<>();
-
-    public ViewPagerAdapterIn(FragmentManager manager) {
-      super(manager);
+    public ViewPagerAdapterIn(FragmentManager fm) {
+      super(fm);
     }
 
     @Override
     public Fragment getItem(int position) {
-      return mFragmentList.get(position);
+      switch (position) {
+        case 0:
+          return new PendingIn();
+        case 1:
+        default:
+          return new ApprovedIn();
+      }
     }
 
     @Override
     public int getCount() {
-      return mFragmentList.size();
-    }
-
-    public void addFragment(Fragment fragment, String title) {
-      mFragmentList.add(fragment);
-      mFragmentTitleList.add(title);
+      return 2;
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
-      return mFragmentTitleList.get(position);
+      switch (position) {
+        case 0:
+          return "Pending";
+        case 1:
+        default:
+          return "Approved";
+      }
     }
   }
 }

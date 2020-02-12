@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.gocar.Acivities.HomeActivity;
 import com.example.gocar.Classes.DemoClass;
@@ -26,24 +27,20 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static com.example.gocar.Acivities.AddCarActivity.fragmentManager;
+
 public class CarInfo extends Fragment {
     private FloatingActionButton btn;
     private EditText vname,vnum,vmodel,vcapacity,vcc,fuel,rph;
     private  View view;
-    private ApiInterface api;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
      view = inflater.inflate(R.layout.car_info, container, false);
 
         initialize();
-        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl("http://72.255.61.208:9001/api/v1/")
-                .baseUrl("http://192.168.0.108:9001/api/v1/")
 
-                .addConverterFactory(GsonConverterFactory.create( ))
-                .build();
-        api=retrofit.create(ApiInterface.class);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,9 +52,23 @@ public class CarInfo extends Fragment {
                         !TextUtils.isEmpty(vmodel.getText().toString())&&!TextUtils.isEmpty(vcapacity.getText().toString())&&
                         !TextUtils.isEmpty(vcc.getText().toString())&&!TextUtils.isEmpty(fuel.getText().toString())&&
                         !TextUtils.isEmpty(rph.getText().toString()) ) {
-                    postVehicle( vnum.getText().toString(), vname.getText().toString(), Integer.parseInt(vmodel.getText().toString())
-                            , Integer.parseInt(vcapacity.getText().toString()), Integer.parseInt(vcc.getText().toString())
-                            , "ACTIVE", fuel.getText().toString(), DemoClass.pnumber, Integer.parseInt(rph.getText().toString()) );
+
+                    DemoClass.bookingDTO.setVehicle_number( vnum.getText().toString());
+                    DemoClass.bookingDTO.setVehicle_name( vname.getText().toString());
+                    DemoClass.bookingDTO.setModel( Integer.parseInt(vmodel.getText().toString()));
+                    DemoClass.bookingDTO.setSeating_capacity( Integer.parseInt(vcapacity.getText().toString()));
+                    DemoClass.bookingDTO.setCc( Integer.parseInt(vcc.getText().toString()));
+                    DemoClass.bookingDTO.setStatus( "ACTIVE");
+                    DemoClass.bookingDTO.setFuel( fuel.getText().toString());
+                    DemoClass.bookingDTO.setUsername(DemoClass.pnumber);
+                    DemoClass.bookingDTO.setRent_per_hour( Integer.parseInt(rph.getText().toString()));
+
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    Images numberFragment = new Images();
+                    fragmentTransaction.replace(R.id.fragment_container, numberFragment, null);
+
+                    fragmentTransaction.commit();
+
                 }
                 else{
                     Toast.makeText(getContext(), "Please Fill All the required Credentials", Toast.LENGTH_SHORT).show();
@@ -80,27 +91,5 @@ public class CarInfo extends Fragment {
 
         btn=view.findViewById(R.id.add_car_next_1);
     }
-    public void postVehicle(String vehicle_number,String Vehicle_name, int Model, int capacity,int cc,String  status,String fuel,String username, float rph){
 
-        Call<VehicleRequest> call = api.vehiclePost(new VehicleRequest(vehicle_number,Vehicle_name,Model,capacity,cc,status,fuel,username,rph));
-        call.enqueue(new Callback<VehicleRequest>() {
-            @Override
-            public void onResponse(Call<VehicleRequest> call, Response<VehicleRequest> response) {
-                if(response.isSuccessful()  ){
-                    Toast.makeText(getContext(), "Vehicle Added", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getContext(), HomeActivity.class));
-                }
-                else{
-                    Toast.makeText(getContext(), String.valueOf(response.code()), Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<VehicleRequest> call, Throwable t) {
-
-                Toast.makeText(getContext(),  t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-    }
 }
