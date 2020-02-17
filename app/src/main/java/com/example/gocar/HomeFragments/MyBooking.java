@@ -40,18 +40,7 @@ public class MyBooking extends Fragment {
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     View rootView= inflater.inflate(R.layout.mybooking_fragment,container,false);
 
-    sessionManager=new SessionManager(getContext());
-    linearLayout=rootView.findViewById(R.id.loginLinearLayoutMyBooking);
-    if(!sessionManager.isLoggedIn()){
-      linearLayout.setVisibility(View.VISIBLE);
-    }
-    login=rootView.findViewById(R.id.loginbtnbooking);
-    login.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        startActivity(new Intent(getContext(), LoginActivity.class));
-      }
-    });
+
 
 
 

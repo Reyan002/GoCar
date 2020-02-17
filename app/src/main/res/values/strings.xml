@@ -2,8 +2,8 @@
     <string name="app_name">GoCar</string>
     <string name="title_home_old">Home</string>
     <string name="title_mycars">My Cars</string>
-    <string name="title_mybooking">Booking</string>
-    <string name="text_history">Booking</string>
+    <string name="title_mybooking">Booking In</string>
+    <string name="text_history">Booking Out</string>
     <string name="text_account">My Account</string>
     <string name="title_activity_new_home">NewHomeActivity</string>
     <string name="title_home">Home</string>

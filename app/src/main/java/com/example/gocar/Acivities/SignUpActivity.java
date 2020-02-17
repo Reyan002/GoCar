@@ -101,30 +101,7 @@ api=ApiUtils.getAPIService();
 //                   locationtext.setText(getAddress(getApplicationContext(),latitude,longitude));
                 locationtext.setText(getCompleteAddressString(latitude,longitude));
                    location_text=locationtext.getText().toString();
-//                   try {
-//                       Geocoder geo = new Geocoder(SignUpActivity.this.getApplicationContext(), Locale.getDefault());
-//                       List<Address> addresses = geo.getFromLocation(latitude, longitude, 1);
-//                       if (addresses.isEmpty()) {
-//                           locationtext.setText("Waiting for Location");
-//                       } else {
-//                           if (addresses.size() > 0) {
-//                               locationtext.setText(addresses.get(0).getFeatureName() + ", " + addresses.get(0).getLocality() + ", " + addresses.get(0).getAdminArea() + ", " + addresses.get(0).getCountryName());
-//                               //Toast.makeText(getApplicationContext(), "Address:- " + addresses.get(0).getFeatureName() + addresses.get(0).getAdminArea() + addresses.get(0).getLocality(), Toast.LENGTH_LONG).show();
-//                           location.setEnabled(false);
-//                           }
-//                       }
-//                   } catch (Exception e) {
-//                       e.printStackTrace(); // getFromLocation() may sometimes fail
-//                   }
 
-                //                    String result = "Latitude: " + gpsLocation.getLatitude() +
-//                            " Longitude: " + gpsLocation.getLongitude();
-//                    locationtext.setText(result);
-//                    LocationAddress locationAddress = new LocationAddress();
-//                    locationAddress.getAddressFromLocation(latitude, longitude,
-//                            getApplicationContext(), new GeocoderHandler());
-//                    location.setText("Location Picked");
-//
                 } else {
                     showSettingsAlert();
                 }
@@ -320,7 +297,7 @@ api=ApiUtils.getAPIService();
         return strAdd;
     }
 
-    public void postToSignUp(String userName,String FirstName,String LastName,String Password,String CNIC,String lon,String lat,String Contact ,String address,String dp){
+    public void postToSignUp(String userName,String FirstName,String LastName,String Password,String CNIC,String lon,String lat,String address, String Contact ,String dp){
 
 
         Call<Users> call = api.signupUser(new Users(userName,FirstName,LastName,Password,CNIC,Float.valueOf(lon),Float.valueOf(lat),Contact ,address,dp));

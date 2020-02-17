@@ -1,5 +1,6 @@
 package com.example.gocar.BookingFragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +28,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApprovedIn extends Fragment {
+    private Context context;
     private ApiInterface api;
     private RecyclerView recyclerView;
     private BookingAdapter mycarsAdapter;
@@ -69,7 +71,9 @@ public class ApprovedIn extends Fragment {
 
                 if(response.isSuccessful()){
 
-                        myListcar=response.body();
+
+
+                    myListcar=response.body();
                           recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
                          mycarsAdapter=new BookingAdapter(myListcar,getContext());
                         recyclerView.setAdapter(mycarsAdapter);
@@ -78,15 +82,12 @@ public class ApprovedIn extends Fragment {
 
 
                 }
-                else{
-                    Toast.makeText(getContext(), String.valueOf(response.code()), Toast.LENGTH_LONG).show();
-                }
+
   }
 
             @Override
             public void onFailure(Call<List<BookingDTO>> call, Throwable t) {
 
-                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
 
             }
         });

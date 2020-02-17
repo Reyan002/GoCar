@@ -1,5 +1,6 @@
 package com.example.gocar.BookingFragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,9 +8,13 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.gocar.Adapters.BookingAdapter;
 import com.example.gocar.Classes.AllActiveVehicle;
 import com.example.gocar.Classes.BookingDTO;
+import com.example.gocar.Classes.DemoClass;
 import com.example.gocar.R;
 import com.example.gocar.Rest.ApiInterface;
 import com.example.gocar.Rest.ApiUtils;
@@ -24,7 +29,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PendingOut extends Fragment {
     private ApiInterface api;
-
+    private Context context;
+    private RecyclerView recyclerView;
+    private BookingAdapter mycarsAdapter;
+    private List<BookingDTO> myListcar;
     public PendingOut() {
         // Required empty public constructor
     }
@@ -39,6 +47,8 @@ public class PendingOut extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.layout_pending, container, false);
+
+        recyclerView = view.findViewById(R.id.rrpIn);
 
 //        Retrofit retrofit = new Retrofit.Builder()
 ////                .baseUrl("http://72.255.61.208:9001/api/v1/")
@@ -55,24 +65,27 @@ public class PendingOut extends Fragment {
 
     public void getPendingAsACustomer(){
 
-        Call<List<BookingDTO>> call = api.BookingOutAsACustomer("12","Pending") ;
+        Call<List<BookingDTO>> call = api.BookingOutAsACustomer(DemoClass.pnumber,"Pending") ;
         call.enqueue(new Callback<List<BookingDTO>>() {
             @Override
             public void onResponse(Call<List<BookingDTO>> call, Response<List<BookingDTO>> response) {
 
                 if(response.isSuccessful()){
                     Toast.makeText(getContext(), String.valueOf(response.code()), Toast.LENGTH_LONG).show();
+                    myListcar=response.body();
 
+                    recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                    mycarsAdapter=new BookingAdapter(myListcar,context);
+                    recyclerView.setAdapter(mycarsAdapter);
+                    mycarsAdapter.notifyDataSetChanged();
                 }
-                else{
-                    Toast.makeText(getContext(), String.valueOf(response.code()), Toast.LENGTH_LONG).show();
-                }
+
             }
 
             @Override
             public void onFailure(Call<List<BookingDTO>> call, Throwable t) {
 
-                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
 
             }
         });

@@ -73,10 +73,10 @@ public class MyHistory extends Fragment {
     public Fragment getItem(int position) {
       switch (position) {
         case 0:
-          return new PendingIn();
+          return new PendingOut();
         case 1:
         default:
-          return new ApprovedIn();
+          return new ApprovedOut();
       }
     }
 

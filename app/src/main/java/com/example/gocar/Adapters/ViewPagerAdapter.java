@@ -12,7 +12,10 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.gocar.R;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class ViewPagerAdapter extends PagerAdapter {
 
@@ -42,7 +45,7 @@ public class ViewPagerAdapter extends PagerAdapter {
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.images_view, null);
         ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
-        imageView.setImageResource(Integer.valueOf(images.get(position)));
+//        imageView.setImageResource(Integer.valueOf(images.get(position)));
         Picasso.get().load(images.get(position)).into(imageView);
 
         ViewPager vp = (ViewPager) container;
@@ -59,4 +62,5 @@ public class ViewPagerAdapter extends PagerAdapter {
         vp.removeView(view);
 
     }
+
 }

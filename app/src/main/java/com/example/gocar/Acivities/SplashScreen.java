@@ -40,6 +40,12 @@ public class SplashScreen extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                if(sessionManager.isLoggedIn()) {
+//
+//                DemoClass.pnumber=sessionManager.getUserDetails();
+//                startActivity(new Intent(SplashScreen.this, HomeActivity.class));
+//            }
+//                startActivity(new Intent(SplashScreen.this, HomeActivity.class));
                 if (!TextUtils.isEmpty(textView.getText().toString())) {
                     if (sessionManager.isLoggedIn()) {
 
@@ -52,7 +58,9 @@ public class SplashScreen extends AppCompatActivity {
                     startActivity(new Intent(SplashScreen.this, HomeActivity.class));
 
                 }
-                Toast.makeText(SplashScreen.this, "Please Provide IP", Toast.LENGTH_SHORT).show();
+                else {
+                    Toast.makeText(SplashScreen.this, "Please Provide IP", Toast.LENGTH_SHORT).show();
+                }
             }
 
         });

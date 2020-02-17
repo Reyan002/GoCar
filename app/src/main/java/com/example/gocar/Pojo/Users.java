@@ -2,18 +2,19 @@ package com.example.gocar.Pojo;
  public class Users {
 
 
+
      private String username;
      private String first_name;
      private String last_name;
      private String password;
      private String cnic;
-     private Float longitude;
-     private Float latitude;
+     private double longitude;
+     private double latitude;
      private String address;
      private String contact;
      private String dp;
 
-     public Users(String username, String first_name, String last_name, String password, String cnic, Float longitude, Float latitude, String address, String contact, String dp) {
+     public Users(String username, String first_name, String last_name, String password, String cnic, double longitude, double latitude,  String contact,String address, String dp) {
          this.username = username;
          this.first_name = first_name;
          this.last_name = last_name;
@@ -66,7 +67,7 @@ package com.example.gocar.Pojo;
          this.cnic = cnic;
      }
 
-     public Float getLongitude() {
+     public double getLongitude() {
          return longitude;
      }
 
@@ -74,7 +75,7 @@ package com.example.gocar.Pojo;
          this.longitude = longitude;
      }
 
-     public Float getLatitude() {
+     public double getLatitude() {
          return latitude;
      }
 

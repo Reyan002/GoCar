@@ -9,8 +9,9 @@ public class BookingDTO {
     private String end;
     private Float rentPerHour;
     private String bookingTime;
+    private String image;
 
-    public BookingDTO(Integer bookingId, String vehicleNumber, String sellerId, String customerId, String start, String end, Float rentPerHour, String bookingTime) {
+    public BookingDTO(Integer bookingId, String vehicleNumber, String sellerId, String customerId, String start, String end, Float rentPerHour, String bookingTime, String image) {
         this.bookingId = bookingId;
         this.vehicleNumber = vehicleNumber;
         this.sellerId = sellerId;
@@ -19,6 +20,15 @@ public class BookingDTO {
         this.end = end;
         this.rentPerHour = rentPerHour;
         this.bookingTime = bookingTime;
+        this.image = image;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getBookingTime() {

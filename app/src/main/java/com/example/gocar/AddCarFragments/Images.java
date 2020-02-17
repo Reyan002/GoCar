@@ -1,5 +1,6 @@
 package com.example.gocar.AddCarFragments;
 
+import android.app.ProgressDialog;
 import android.content.ClipData;
 import android.content.Intent;
 import android.database.Cursor;
@@ -196,14 +197,20 @@ uploadImages(new listener() {
     }
 
     public void postVehicle(String vehicle_number,String Vehicle_name, int Model, int capacity,int cc,String  status,String fuel,String username, float rph,List<String> images){
+        final ProgressDialog loadingBar=new ProgressDialog(getContext());
+        loadingBar.setTitle("Adding New Car");
+        loadingBar.setMessage("Please Wait, while we are adding your Car");
+        loadingBar.setCanceledOnTouchOutside(false);
+        loadingBar.show();
 
         Call<VehicleRequest> call = api.vehiclePost(new VehicleRequest(vehicle_number,Vehicle_name,Model,capacity,cc,status,fuel,username,rph,images));
         call.enqueue(new Callback<VehicleRequest>() {
             @Override
             public void onResponse(Call<VehicleRequest> call, Response<VehicleRequest> response) {
                 if(response.isSuccessful()  ){
-                    Toast.makeText(getContext(), "Vehicle Added", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getContext(), "Vehicle Added", Toast.LENGTH_SHORT).show();
 
+                    loadingBar.dismiss();
                     startActivity(new Intent(getContext(), HomeActivity.class));
                 }
                 else{
@@ -239,9 +246,9 @@ public void uploadImages(final listener listener){
                          images1.add(url);
                          i++;
                          if(i==mArrayUri.size() ) listener.onComplete(images1);
-                         Toast.makeText(getContext(), String.valueOf(images1.size()), Toast.LENGTH_SHORT).show();
-
-                         Toast.makeText(getContext(), url, Toast.LENGTH_SHORT).show();
+//                         Toast.makeText(getContext(), String.valueOf(images1.size()), Toast.LENGTH_SHORT).show();
+//
+//                         Toast.makeText(getContext(), url, Toast.LENGTH_SHORT).show();
                      }
                  });
              }

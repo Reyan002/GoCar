@@ -226,16 +226,12 @@
                     android:layout_height="wrap_content"
                     >
 
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:id="@+id/image_data"
-                        android:layout_height="50dp"
-                        android:src="@drawable/pic"
-                        />
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/userDp"
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
                         android:layout_gravity="right|bottom"/>
                 </FrameLayout>
 
@@ -270,6 +266,8 @@
 
 
             <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/lldetail"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -329,17 +327,31 @@
             </LinearLayout>
 
             <Button
+                android:visibility="gone"
                 android:id="@+id/smessage"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_margin="15dp"
-                android:background="@drawable/rectangle"
-                android:text="Send Message"
+                android:background="@color/colorPrimary"
+                android:text="Request Booking"
                 android:textColor="#FFFFFF"
                 android:gravity="center"
                 android:textSize="14sp"/>
 
+            <Button
+                android:visibility="gone"
+                android:id="@+id/login_booking"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="15dp"
+                android:background="@color/colorPrimary"
+                android:text="log In"
+                android:textColor="#FFFFFF"
+                android:gravity="center"
+                android:textSize="14sp"/>
         </LinearLayout>
+
+
     </ScrollView>
 
 

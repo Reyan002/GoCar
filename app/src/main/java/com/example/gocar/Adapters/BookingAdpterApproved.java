@@ -1,6 +1,12 @@
 package com.example.gocar.Adapters;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,10 +15,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gocar.Classes.BookingDTO;
-import com.example.gocar.Classes.DemoClass;
 import com.example.gocar.R;
 import com.example.gocar.Rest.ApiInterface;
 import com.example.gocar.Rest.ApiUtils;
@@ -25,12 +31,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class BookingAdapter  extends RecyclerView.Adapter<BookingAdapter.BookingViewHolder> {
+public class BookingAdpterApproved extends RecyclerView.Adapter<BookingAdpterApproved.BookingViewHolder> {
     List<BookingDTO> myCarList;
     Context context;
     private ApiInterface api= ApiUtils.getAPIService();
 
-    public BookingAdapter(List<BookingDTO> myCarList, Context context) {
+    public BookingAdpterApproved(List<BookingDTO> myCarList, Context context) {
         this.myCarList = myCarList;
         this.context = context;
     }
@@ -38,14 +44,13 @@ public class BookingAdapter  extends RecyclerView.Adapter<BookingAdapter.Booking
     @NonNull
     @Override
 
-    public  BookingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.booking_layout,
+    public BookingAdpterApproved.BookingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.booking_approved_layout,
                 parent, false);
-        return new BookingViewHolder(view);  }
+        return new BookingAdpterApproved.BookingViewHolder(view);  }
 
     @Override
-    public void onBindViewHolder(@NonNull  BookingViewHolder holder, int position) {
-
+    public void onBindViewHolder(@NonNull BookingViewHolder holder, int position) {
         final BookingDTO cars= myCarList.get(position);
 //        String details=cars.getUsername();
 //        String[] detailsArray =details.split("#");
@@ -54,35 +59,64 @@ public class BookingAdapter  extends RecyclerView.Adapter<BookingAdapter.Booking
 //        final String Lat=detailsArray[2];
 //        final String Contact=detailsArray[1];
 //        final String FLname=detailsArray[0];
+
+
+        if (cars.getImage()==null || cars.getImage().isEmpty()) {
+
+            holder.imageView.setImageResource(R.drawable.ic_account_circle_black_24dp);
+        } else{
+            Picasso.get().load(cars.getImage()).into(holder.imageView);
+        }
         holder.carName.setText(cars.getVehicleNumber());
         holder.reprh.setText( cars.getRentPerHour() +" PKR");
-        holder.requestedBy.setText(cars.getCustomerId());
-        if (cars.getImage()==null || cars.getImage().isEmpty()) {
-            holder.imageView.setImageResource(R.drawable.ic_account_circle_black_24dp);
-//                        dp.setImageResource(R.drawable.active_dots);
-        } else{
-            Picasso.get().load(cars.getImage()).into(holder.imageView );
-        }
-
+        holder.requestedBy.setText(cars.getSellerId());
         holder.range.setText(cars.getStart()+"-"+cars.getEnd());
-        holder.accept.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                acceptRequest(new BookingDTO(cars.getBookingId(),cars.getVehicleNumber(),
-                        cars.getSellerId(),cars.getCustomerId(),cars.getStart(),cars.getEnd()
-                ,cars.getRentPerHour(),cars.getBookingTime(),""),1);
-            }
-        });
         holder.reject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                rejrctRequest(new BookingDTO(cars.getBookingId(),cars.getVehicleNumber(),
-                        cars.getSellerId(),cars.getCustomerId(),cars.getStart(),cars.getEnd()
-                        ,cars.getRentPerHour(),cars.getBookingTime(),""),0);
+                Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+                sendIntent.setData(Uri.parse("sms:"+cars.getSellerId()));
+                 v.getContext().startActivity(sendIntent);
+            }
+        });
+        holder.accept.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try
+                {
+                    if(Build.VERSION.SDK_INT > 22)
+                    {
+                        if (ActivityCompat.checkSelfPermission( v.getContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                            // TODO: Consider calling
+
+                            ActivityCompat.requestPermissions((Activity) v.getContext(), new String[]{Manifest.permission.CALL_PHONE}, 101);
+
+                            return;
+                        }
+
+                        Intent callIntent = new Intent(Intent.ACTION_CALL);
+                        callIntent.setData(Uri.parse("tel:" +cars.getSellerId()));
+                        callIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        v.getContext().startActivity(callIntent);
+
+                    }
+                    else {
+                        Intent callIntent = new Intent(Intent.ACTION_CALL);
+                        callIntent.setData(Uri.parse("tel:" + cars.getSellerId()));
+                        callIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        v.getContext().startActivity(callIntent);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ex.printStackTrace();
+                }
             }
         });
 
     }
+
+
 
     public void acceptRequest(BookingDTO bookingDTO,int i){
 
@@ -127,31 +161,27 @@ public class BookingAdapter  extends RecyclerView.Adapter<BookingAdapter.Booking
         public TextView carName;
         private View view;
         public TextView carRate;
-         public TextView reprh;
+        public TextView reprh;
         public TextView requestedBy;
         public TextView range;
-        public Button accept,reject;
         public CircleImageView imageView;
+        public Button accept,reject;
 
 
         public BookingViewHolder(View itemView) {
             super(itemView);
             this.view=itemView;
-             carRate = (TextView) itemView.findViewById(R.id.car_name_booking);
-            carName = (TextView) itemView.findViewById(R.id.car_loc);
-            requestedBy = (TextView) itemView.findViewById(R.id.requested_by);
-            range = (TextView) itemView.findViewById(R.id.range);
-            reprh = (TextView) itemView.findViewById(R.id.rperh);
-            accept =  itemView.findViewById(R.id.accept);
-            reject =  itemView.findViewById(R.id.decline);
-            imageView=itemView.findViewById(R.id.booking_image);
-            if(DemoClass.type.equals("In")){
-                accept.setVisibility(View.VISIBLE);
-            }
+            carRate = (TextView) itemView.findViewById(R.id.car_name_bookingA);
+            carName = (TextView) itemView.findViewById(R.id.car_locA);
+            requestedBy = (TextView) itemView.findViewById(R.id.requested_byA);
+            range = (TextView) itemView.findViewById(R.id.rangeA);
+            reprh = (TextView) itemView.findViewById(R.id.rperhA);
+            accept =  itemView.findViewById(R.id.acceptA);
+            reject =  itemView.findViewById(R.id.declineA);
+            imageView =  itemView.findViewById(R.id.booking_imageA);
         }
 
     }
 
     //
 }
-

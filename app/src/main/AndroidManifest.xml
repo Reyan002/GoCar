@@ -4,11 +4,11 @@
     package="com.example.gocar">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-         android:allowBackup="true"
-        android:usesCleartextTraffic="true"
+        android:allowBackup="true"
         android:appComponentFactory="whateverString"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
@@ -17,8 +17,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Base.AppTheme"
+        android:usesCleartextTraffic="true"
         tools:replace="android:appComponentFactory">
-        <activity android:name=".Acivities.UpdateProfile"></activity>
+        <activity android:name=".Acivities.BookingOut"></activity>
+        <activity android:name=".Acivities.BookingIn" />
+        <activity android:name=".Acivities.UpdateProfile" />
         <activity
             android:name=".Acivities.AddCarActivity"
             android:launchMode="singleTop"

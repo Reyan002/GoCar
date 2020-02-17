@@ -17,9 +17,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gocar.Acivities.LoginActivity;
+import com.example.gocar.Adapters.Cars;
 import com.example.gocar.Adapters.MycarsAdapter;
 import com.example.gocar.Classes.AllActiveVehicle;
-import com.example.gocar.Classes.Cars;
 import com.example.gocar.Classes.DemoClass;
 import com.example.gocar.R;
 import com.example.gocar.Rest.ApiInterface;
@@ -33,8 +33,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MyCars extends Fragment {
 
@@ -44,7 +42,7 @@ public class MyCars extends Fragment {
     private LinearLayout linearLayout;
     private SessionManager sessionManager;
     private RecyclerView recyclerView;
-    private MycarsAdapter mycarsAdapter;
+    private Cars mycarsAdapter;
     private List<AllActiveVehicle> myListcar;
     private ApiInterface api;
 
@@ -106,8 +104,11 @@ api= ApiUtils.getAPIService();
                 if(response.isSuccessful()){
                     myListcar=response.body();
                     //layoutManager = new GridLayoutManager(context,2);
-                    recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-                    mycarsAdapter=new MycarsAdapter(myListcar,context);
+                    LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+
+                    recyclerView.setLayoutManager(layoutManager);
+                    recyclerView.setLayoutManager( layoutManager);
+                    mycarsAdapter=new Cars(myListcar,context);
                     recyclerView.setAdapter(mycarsAdapter);
                 }
                 else{

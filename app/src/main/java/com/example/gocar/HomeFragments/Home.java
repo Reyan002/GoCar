@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gocar.Adapters.MycarsAdapter;
 import com.example.gocar.Classes.AllActiveVehicle;
+import com.example.gocar.Classes.DemoClass;
 import com.example.gocar.Classes.FcmRequest;
 import com.example.gocar.R;
 import com.example.gocar.Rest.ApiInterface;
@@ -22,6 +23,7 @@ import com.example.gocar.Rest.ApiUtils;
 import com.example.gocar.SessionManager.SessionManager;
 import com.google.firebase.iid.FirebaseInstanceId;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -73,12 +75,25 @@ public class Home extends Fragment {
             public void onResponse(Call<List<AllActiveVehicle>> call, Response<List<AllActiveVehicle>> response) {
 
                 if(response.isSuccessful()){
-                    myListcar=response.body();
-                    layoutManager = new GridLayoutManager(context,2);
-                    //recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-                    recyclerView.setLayoutManager(layoutManager);
-                    mycarsAdapter=new MycarsAdapter(myListcar,context);
-                    recyclerView.setAdapter(mycarsAdapter);
+                    if(!DemoClass.lst.isEmpty())
+                    {  layoutManager = new GridLayoutManager(context,2);
+                        //recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                        recyclerView.setLayoutManager(layoutManager);
+                        mycarsAdapter=new MycarsAdapter(DemoClass.lst,context);
+                        recyclerView.setAdapter(mycarsAdapter);
+
+                    }
+                    else{
+                        myListcar=response.body();
+
+                        layoutManager = new GridLayoutManager(context,2);
+                        //recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                        recyclerView.setLayoutManager(layoutManager);
+                        mycarsAdapter=new MycarsAdapter(myListcar,context);
+                        recyclerView.setAdapter(mycarsAdapter);
+                    }
+
+
                 }
                 else{
                     Toast.makeText(getContext(), String.valueOf(response.code()), Toast.LENGTH_LONG).show();
@@ -121,5 +136,8 @@ public class Home extends Fragment {
 
 
     }
+
+
+
 
 }

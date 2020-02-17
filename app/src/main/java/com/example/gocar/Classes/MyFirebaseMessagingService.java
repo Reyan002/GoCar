@@ -16,6 +16,7 @@ import com.example.gocar.BookingFragment.ApprovedOut;
 import com.example.gocar.BookingFragment.PendingIn;
 import com.example.gocar.HomeFragments.MyBooking;
 import com.example.gocar.Rest.ApiInterface;
+import com.example.gocar.Rest.ApiUtils;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -99,27 +100,25 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     public void tokenG(String token){
 
-        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl("http://72.255.61.208:9001/api/v1/")
-                .baseUrl("http://192.168.0.108:9001/api/v1/")
 
-                .addConverterFactory(GsonConverterFactory.create( ))
-                .build();
-        ApiInterface api=retrofit.create(ApiInterface.class);
-        Call<FcmRequest> call=api.token(new FcmRequest("12", token));
-        call.enqueue(new Callback<FcmRequest>() {
-            @Override
-            public void onResponse(Call<FcmRequest> call, Response<FcmRequest> response) {
-                if(response.isSuccessful()){
+        ApiInterface api= ApiUtils.getAPIService();
+
+        if(DemoClass.pnumber!=null&&DemoClass.pnumber.isEmpty()) {
+            Call<FcmRequest> call = api.token(new FcmRequest(DemoClass.pnumber, token));
+            call.enqueue(new Callback<FcmRequest>() {
+                @Override
+                public void onResponse(Call<FcmRequest> call, Response<FcmRequest> response) {
+                    if (response.isSuccessful()) {
 //                    Toast.makeText(getContext(), "Error NOt", Toast.LENGTH_SHORT).show();
-                }
+                    }
 //                Toast.makeText(getContext(), String.valueOf(response.code()), Toast.LENGTH_SHORT).show();
-            }
+                }
 
-            @Override
-            public void onFailure(Call<FcmRequest> call, Throwable t) {
+                @Override
+                public void onFailure(Call<FcmRequest> call, Throwable t) {
 //                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+                }
+            });
+        }
     }
 }

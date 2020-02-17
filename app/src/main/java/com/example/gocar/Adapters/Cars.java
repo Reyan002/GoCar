@@ -21,40 +21,31 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MycarsAdapter extends RecyclerView.Adapter<MycarsAdapter.ViewHolder> {
-    List<AllActiveVehicle> myCarList;
-    Context context;
+public class Cars extends RecyclerView.Adapter<Cars.MyCarViewHolder>  {
 
-    public MycarsAdapter(List<AllActiveVehicle> myCarList, Context context) {
-        this.myCarList = myCarList;
+    private List<AllActiveVehicle> vehicles;
+    private Context context;
+
+    public Cars(List<AllActiveVehicle> vehicles, Context context) {
+        this.vehicles = vehicles;
         this.context = context;
     }
 
     @NonNull
     @Override
-
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.my_cars,
+    public MyCarViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.my_cars_layout,
                 parent, false);
-        return new ViewHolder(view);    }
+        return new Cars.MyCarViewHolder(view);
+    }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
-      final AllActiveVehicle cars= myCarList.get(position);
-      String details=cars.getUsername();
-//      String[] detailsArray =details.split("#");
-//      final String address=detailsArray[4];
-//      final String Long=detailsArray[3];
-//      final String Lat=detailsArray[2];
-//      final String Contact=detailsArray[1];
-//      final String FLname=detailsArray[0];
-        holder.carName.setText(cars.getVehicle_name());
-        holder.carAdres.setText(cars.getAddress());
-        holder.carRate.setText( cars.getRent_per_hour() +" PKR");
-//        holder.carAdres.setText(address);
+    public void onBindViewHolder(@NonNull MyCarViewHolder holder, int position) {
+        final AllActiveVehicle cars= vehicles.get(position);
         Picasso.get().load(cars.getImages().get(0)).into(holder.imageView);
-
+        holder.carName.setText(cars.getVehicle_name());
+        holder.carRate.setText(cars.getRent_per_hour());
+        holder.carAdres.setText(cars.getAddress());
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,14 +68,15 @@ public class MycarsAdapter extends RecyclerView.Adapter<MycarsAdapter.ViewHolder
 
             }
         });
+
     }
 
     @Override
     public int getItemCount() {
-        return myCarList.size();
+        return vehicles.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class MyCarViewHolder extends RecyclerView.ViewHolder{
         public TextView carName;
         public ImageView imageView;
         private View view;
@@ -92,18 +84,15 @@ public class MycarsAdapter extends RecyclerView.Adapter<MycarsAdapter.ViewHolder
         public TextView carAdres;
         public CardView cardView;
 
-        public ViewHolder(View itemView) {
+        public MyCarViewHolder(View itemView) {
             super(itemView);
             this.view=itemView;
-           cardView = itemView.findViewById(R.id.car_entity);
-           carRate = (TextView) itemView.findViewById(R.id.rate_car);
-           imageView =  itemView.findViewById(R.id.profile_image);
-           carName = (TextView) itemView.findViewById(R.id.car_name);
-           carAdres = (TextView) itemView.findViewById(R.id.car_adrees);
+            cardView = itemView.findViewById(R.id.cvMyCar);
+            carRate = (TextView) itemView.findViewById(R.id.rphMyCar);
+            imageView =  itemView.findViewById(R.id.imageMyCar);
+            carName = (TextView) itemView.findViewById(R.id.nameMyCar);
+            carAdres = (TextView) itemView.findViewById(R.id.addRessMyCarr);
         }
 
     }
-
-    //
 }
-

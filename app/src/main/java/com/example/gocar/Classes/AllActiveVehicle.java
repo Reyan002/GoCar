@@ -21,6 +21,16 @@ public class AllActiveVehicle {
     private String vehicle_name;
 
     private String status;
+    private String address;
+
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     public ArrayList<String> getImages() {
         return images;
