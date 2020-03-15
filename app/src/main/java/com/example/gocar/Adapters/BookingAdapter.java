@@ -1,16 +1,17 @@
 package com.example.gocar.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.gocar.Acivities.HomeActivity;
 import com.example.gocar.Classes.BookingDTO;
 import com.example.gocar.Classes.DemoClass;
 import com.example.gocar.R;
@@ -26,8 +27,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class BookingAdapter  extends RecyclerView.Adapter<BookingAdapter.BookingViewHolder> {
-    List<BookingDTO> myCarList;
-    Context context;
+   private List<BookingDTO> myCarList;
+    private Context context;
     private ApiInterface api= ApiUtils.getAPIService();
 
     public BookingAdapter(List<BookingDTO> myCarList, Context context) {
@@ -90,11 +91,11 @@ public class BookingAdapter  extends RecyclerView.Adapter<BookingAdapter.Booking
         call.enqueue(new Callback<BookingDTO>() {
             @Override
             public void onResponse(Call<BookingDTO> call, Response<BookingDTO> response) {
-                if(response.isSuccessful()){
-                    Toast.makeText(context, "Accepted", Toast.LENGTH_SHORT).show();
+                if (response.isSuccessful()) {
+
+//                    context.startActivity(new Intent(context, HomeActivity.class));                }
                 }
             }
-
             @Override
             public void onFailure(Call<BookingDTO> call, Throwable t) {
 
@@ -109,11 +110,15 @@ public class BookingAdapter  extends RecyclerView.Adapter<BookingAdapter.Booking
             public void onResponse(Call<BookingDTO> call, Response<BookingDTO> response) {
                 if(response.isSuccessful()){
 
+
+//                    context.startActivity(new Intent(context, HomeActivity.class));
                 }
             }
 
             @Override
             public void onFailure(Call<BookingDTO> call, Throwable t) {
+
+
 
             }
         });
@@ -145,9 +150,11 @@ public class BookingAdapter  extends RecyclerView.Adapter<BookingAdapter.Booking
             accept =  itemView.findViewById(R.id.accept);
             reject =  itemView.findViewById(R.id.decline);
             imageView=itemView.findViewById(R.id.booking_image);
-            if(DemoClass.type.equals("In")){
+            if(DemoClass.type.equals("In")&& DemoClass.typeA.equals("")){
+
                 accept.setVisibility(View.VISIBLE);
             }
+
         }
 
     }

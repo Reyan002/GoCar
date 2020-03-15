@@ -19,8 +19,11 @@
         android:theme="@style/Base.AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:appComponentFactory">
-        <activity android:name=".Acivities.BookingOut"></activity>
-        <activity android:name=".Acivities.BookingIn" />
+        <activity android:name=".Acivities.BookingOut"
+            android:parentActivityName=".Acivities.HomeActivity"
+            ></activity>
+        <activity android:name=".Acivities.BookingIn"
+            android:parentActivityName=".Acivities.HomeActivity"/>
         <activity android:name=".Acivities.UpdateProfile" />
         <activity
             android:name=".Acivities.AddCarActivity"

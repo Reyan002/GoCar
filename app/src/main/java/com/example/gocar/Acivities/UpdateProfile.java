@@ -308,9 +308,9 @@ uploadImage();
             @Override
             public void onResponse(Call<Users> call, Response<Users> response) {
                 if(response.isSuccessful()){
-                    Toast.makeText(UpdateProfile.this, String.valueOf(response.code()), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(UpdateProfile.this, String.valueOf(response.code()), Toast.LENGTH_SHORT).show();
                 }
-                Toast.makeText(UpdateProfile.this, String.valueOf(response.code()), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(UpdateProfile.this, String.valueOf(response.code()), Toast.LENGTH_SHORT).show();
 
             }
 

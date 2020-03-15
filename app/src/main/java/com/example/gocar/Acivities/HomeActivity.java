@@ -444,12 +444,12 @@ getSupportActionBar().isHideOnContentScrollEnabled();
 
         switch (item.getItemId()){
             case R.id.navigation_about_us:
-                Toast.makeText(this, "You Clicked About Us", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "You Clicked About Us", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.navigation_logout:
                 sessionManager.logoutUser();
                 item.setVisible(false);
-                Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show();
                 return true;
                 default:
                     return super.onOptionsItemSelected(item);
@@ -497,6 +497,7 @@ getSupportActionBar().isHideOnContentScrollEnabled();
                             linearLayout.setVisibility(View.GONE);
 //                            selectFragment= new MyBooking();
                             DemoClass.type="In";
+                            DemoClass.typeA="";
                             startActivity(new Intent(HomeActivity.this,BookingIn.class));
                             break;
                         case R.id.navigation_mybooking:
@@ -536,16 +537,21 @@ getSupportActionBar().isHideOnContentScrollEnabled();
 
     public void getFiltered(){
 
-        Toast.makeText(HomeActivity.this, String.valueOf(lat+"-"+lon), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(HomeActivity.this, String.valueOf(lat+"-"+lon), Toast.LENGTH_SHORT).show();
         ApiInterface api= ApiUtils.getAPIService();
 
         Call<List<AllActiveVehicle> > call=api.getFilter(String.valueOf(lat),String.valueOf(lon), DemoClass.km,DemoClass.cap,DemoClass.rph);
+
         call.enqueue(new Callback<List<AllActiveVehicle>>() {
             @Override
             public void onResponse(Call<List<AllActiveVehicle>> call, Response<List<AllActiveVehicle>> response) {
                 if(response.isSuccessful()){
                     DemoClass.lst=response.body();
-                    Toast.makeText(HomeActivity.this, "Succes", Toast.LENGTH_SHORT).show();
+                    DemoClass.filter=true;
+//                    Toast.makeText(HomeActivity.this, "Succes", Toast.LENGTH_SHORT).show();
+                    DemoClass.km="";
+                    DemoClass.cap="";
+                    DemoClass.rph="";
                 }
                 else{
                     DemoClass.lst.clear();
@@ -555,6 +561,7 @@ getSupportActionBar().isHideOnContentScrollEnabled();
             @Override
             public void onFailure(Call<List<AllActiveVehicle>> call, Throwable t) {
 
+                Toast.makeText(HomeActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 

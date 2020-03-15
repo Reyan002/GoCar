@@ -13,11 +13,13 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.gocar.Classes.DemoClass;
+import com.example.gocar.Classes.FcmRequest;
 import com.example.gocar.Pojo.LoginRequest;
 import com.example.gocar.R;
 import com.example.gocar.Rest.ApiInterface;
 import com.example.gocar.Rest.ApiUtils;
 import com.example.gocar.SessionManager.SessionManager;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -39,21 +41,14 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         sessionManager=new SessionManager(this);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_clear_black_24dp);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_clear_white_black_24dp);
 
 
 // and in you adapter set this instance
 
 
         initialize();
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl("http://72.255.61.208:9001/api/v1/")
-//
-////               .baseUrl("http://192.168.137.1:9001/api/v1/")
-//
-//                .addConverterFactory(GsonConverterFactory.create(  ))
-//                .build();
-//       api=retrofit.create(ApiInterface.class);
+
        api= ApiUtils.getAPIService();
         creatNewAccountr.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,13 +100,29 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (response.code()==200){
                     //loginFailed
-                    Toast.makeText(LoginActivity.this, String.valueOf(response.code()), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(LoginActivity.this, String.valueOf(response.code()), Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(LoginActivity.this,HomeActivity.class));
                     sessionManager.createLoginSession(loginRequest);
                     DemoClass.pnumber=userPhone.getText().toString();
+
+                    Call<FcmRequest> call1=api.token(new FcmRequest(DemoClass.pnumber, FirebaseInstanceId.getInstance().getToken()));
+                    call1.enqueue(new Callback<FcmRequest>() {
+                        @Override
+                        public void onResponse(Call<FcmRequest> call, Response<FcmRequest> response) {
+                            if(response.isSuccessful()){
+//                                Toast.makeText(LoginActivity.this, "Token Sent", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<FcmRequest> call, Throwable t) {
+
+                        }
+                    });
+
                 }
                 else{
-                    Toast.makeText(LoginActivity.this, String.valueOf(response.code()), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(LoginActivity.this, String.valueOf(response.code()), Toast.LENGTH_SHORT).show();
 
                 }
 
@@ -121,7 +132,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<LoginRequest> call, Throwable t) {
 
-                Toast.makeText(LoginActivity.this, String.valueOf(t.getMessage()), Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
 
 
             }

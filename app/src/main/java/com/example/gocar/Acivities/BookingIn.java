@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.gocar.BookingFragment.ApprovedIn;
 import com.example.gocar.BookingFragment.PendingIn;
+import com.example.gocar.Classes.DemoClass;
 import com.example.gocar.R;
 import com.example.gocar.SessionManager.SessionManager;
 import com.google.android.material.tabs.TabLayout;
@@ -75,9 +76,11 @@ public class BookingIn extends AppCompatActivity {
                 switch (tab.getPosition()) {
                     case 0:
                         fragment = new PendingIn();
+                        DemoClass.typeA="";
                         break;
                     case 1:
                         fragment = new ApprovedIn();
+                        DemoClass.typeA="app_in";
                         break;
 
                 }

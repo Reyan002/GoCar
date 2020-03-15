@@ -71,7 +71,7 @@ public class PendingOut extends Fragment {
             public void onResponse(Call<List<BookingDTO>> call, Response<List<BookingDTO>> response) {
 
                 if(response.isSuccessful()){
-                    Toast.makeText(getContext(), String.valueOf(response.code()), Toast.LENGTH_LONG).show();
+//                    Toast.makeText(getContext(), String.valueOf(response.code()), Toast.LENGTH_LONG).show();
                     myListcar=response.body();
 
                     recyclerView.setLayoutManager(new LinearLayoutManager(context));

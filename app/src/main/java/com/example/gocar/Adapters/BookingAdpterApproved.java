@@ -18,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.gocar.Acivities.HomeActivity;
 import com.example.gocar.Classes.BookingDTO;
 import com.example.gocar.R;
 import com.example.gocar.Rest.ApiInterface;
@@ -118,40 +119,43 @@ public class BookingAdpterApproved extends RecyclerView.Adapter<BookingAdpterApp
 
 
 
-    public void acceptRequest(BookingDTO bookingDTO,int i){
-
-        Call<BookingDTO> call = api.bookingResponse(bookingDTO,i);
-        call.enqueue(new Callback<BookingDTO>() {
-            @Override
-            public void onResponse(Call<BookingDTO> call, Response<BookingDTO> response) {
-                if(response.isSuccessful()){
-                    Toast.makeText(context, "Accepted", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<BookingDTO> call, Throwable t) {
-
-            }
-        });
-
-    }
-    public void rejrctRequest(BookingDTO bookingDTO,int i){
-        Call<BookingDTO> call = api.bookingResponse(bookingDTO,i);
-        call.enqueue(new Callback<BookingDTO>() {
-            @Override
-            public void onResponse(Call<BookingDTO> call, Response<BookingDTO> response) {
-                if(response.isSuccessful()){
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<BookingDTO> call, Throwable t) {
-
-            }
-        });
-    }
+//    public void acceptRequest(BookingDTO bookingDTO,int i){
+//
+//        Call<BookingDTO> call = api.bookingResponse(bookingDTO,i);
+//        call.enqueue(new Callback<BookingDTO>() {
+//            @Override
+//            public void onResponse(Call<BookingDTO> call, Response<BookingDTO> response) {
+//                if(response.isSuccessful()){
+//
+//                    context.startActivity(new Intent(context, HomeActivity.class));
+//
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<BookingDTO> call, Throwable t) {
+//
+//            }
+//        });
+//
+//    }
+//    public void rejrctRequest(BookingDTO bookingDTO,int i){
+//        Call<BookingDTO> call = api.bookingResponse(bookingDTO,i);
+//        call.enqueue(new Callback<BookingDTO>() {
+//            @Override
+//            public void onResponse(Call<BookingDTO> call, Response<BookingDTO> response) {
+//                if(response.isSuccessful()){
+//                    context.startActivity(new Intent(context, HomeActivity.class));
+//
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<BookingDTO> call, Throwable t) {
+//
+//            }
+//        });
+//    }
     @Override
     public int getItemCount() {
         return myCarList.size();

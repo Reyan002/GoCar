@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -40,10 +41,12 @@ public class Home extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     private SessionManager sessionManager;
     private ApiInterface api;
+    private TextView textView;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View Root= inflater.inflate(R.layout.home_fragment,container,false);
+        textView=Root.findViewById(R.id.filterresult);
 //        Retrofit retrofit = new Retrofit.Builder()
 ////                .baseUrl("http://72.255.61.208:9001/api/v1/")
 //                .baseUrl("http://192.168.43.76:9001/api/v1/")
@@ -54,6 +57,7 @@ public class Home extends Fragment {
         api= ApiUtils.getAPIService();
         recyclerView = Root.findViewById(R.id.recyclerview);
 
+        textView.setVisibility(View.GONE);
 
 
         getAllProperty();
@@ -81,11 +85,18 @@ public class Home extends Fragment {
                         recyclerView.setLayoutManager(layoutManager);
                         mycarsAdapter=new MycarsAdapter(DemoClass.lst,context);
                         recyclerView.setAdapter(mycarsAdapter);
+                        textView.setVisibility(View.GONE);
 
+                    }
+                    else if(DemoClass.filter){
+
+                        DemoClass.filter=false;
+                        textView.setVisibility(View.VISIBLE);
                     }
                     else{
                         myListcar=response.body();
 
+                        textView.setVisibility(View.GONE);
                         layoutManager = new GridLayoutManager(context,2);
                         //recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
                         recyclerView.setLayoutManager(layoutManager);
@@ -96,7 +107,7 @@ public class Home extends Fragment {
 
                 }
                 else{
-                    Toast.makeText(getContext(), String.valueOf(response.code()), Toast.LENGTH_LONG).show();
+//                    Toast.makeText(getContext(), String.valueOf(response.code()), Toast.LENGTH_LONG).show();
                 }
 
 
@@ -130,6 +141,7 @@ public class Home extends Fragment {
 
             @Override
             public void onFailure(Call<List<AllActiveVehicle>> call, Throwable t) {
+
 
             }
         });

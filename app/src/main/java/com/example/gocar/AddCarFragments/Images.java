@@ -214,7 +214,7 @@ uploadImages(new listener() {
                     startActivity(new Intent(getContext(), HomeActivity.class));
                 }
                 else{
-                    Toast.makeText(getContext(), String.valueOf(response.code()), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getContext(), String.valueOf(response.code()), Toast.LENGTH_SHORT).show();
                 }
             }
 

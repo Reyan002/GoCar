@@ -51,11 +51,11 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 //            Toast.makeText(this, type, Toast.LENGTH_SHORT).show();
            switch (type){
                case "receive":
-                   startActivity(new Intent(this, LoginActivity.class));
+                   //startActivity(new Intent(this, LoginActivity.class));
 
                    break;
                case "accept":
-                   startActivity(new Intent(this, SignUpActivity.class));
+                   //startActivity(new Intent(this, SignUpActivity.class));
                    break;
                case "decline":
                    startActivity(new Intent(this, HomeActivity.class));

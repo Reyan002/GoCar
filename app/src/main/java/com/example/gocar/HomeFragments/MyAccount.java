@@ -91,13 +91,13 @@ public class MyAccount extends Fragment {
                         Picasso.get().load(response.body().getDp()).into(imageView);
                     }
 
-                    Toast.makeText(getContext(), "Jeyo", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getContext(), "Jeyo", Toast.LENGTH_SHORT).show();
                     name.setText(response.body().getFirst_name()+response.body().getLast_name());
                     cnic.setText(response.body().getCnic());
                     contact.setText(response.body().getContact());
                 }
                 else{
-                    Toast.makeText(getContext(),  "Mar jao", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getContext(),  "Mar jao", Toast.LENGTH_SHORT).show();
                 }
             }
 

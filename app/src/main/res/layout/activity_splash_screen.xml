@@ -17,8 +17,11 @@ tools:context=".Acivities.SplashScreen"
 
      />
     <EditText
+        android:textSize="18dp"
 
-        android:hint="IP Adress "
+
+         android:textColor="@color/colorPrimary"
+         android:hint="IP Adress "
         android:layout_margin="20dp"
         android:layout_below="@id/logo"
         android:id="@+id/fullscreen_content"
@@ -29,6 +32,9 @@ tools:context=".Acivities.SplashScreen"
       />
 
     <Button
+        android:text="Continue"
+        android:textColor="@android:color/white"
+        android:background="@color/colorPrimary"
         android:id="@+id/next"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/fullscreen_content"

@@ -10,7 +10,9 @@ public class DemoClass {
     public static String rph;
 
     public static List<AllActiveVehicle> lst=new ArrayList<>();
+    public static boolean filter=false;
     public static String type;
+    public static String typeA;
     public static ArrayList<String> images=new ArrayList<>();
     public static String pnumber;
     public static VehicleRequest bookingDTO=new VehicleRequest();

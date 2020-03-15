@@ -112,7 +112,7 @@ api= ApiUtils.getAPIService();
                     recyclerView.setAdapter(mycarsAdapter);
                 }
                 else{
-                    Toast.makeText(getContext(), String.valueOf(response.code()), Toast.LENGTH_LONG).show();
+//                    Toast.makeText(getContext(), String.valueOf(response.code()), Toast.LENGTH_LONG).show();
                 }
 
 

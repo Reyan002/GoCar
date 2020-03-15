@@ -306,12 +306,12 @@ api=ApiUtils.getAPIService();
             public void onResponse(Call<Users> call, Response<Users> response) {
                 if(response.code()==400){
                     //user credential errors
-                    Toast.makeText(SignUpActivity.this, "credential", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUpActivity.this, "credential error", Toast.LENGTH_SHORT).show();
 
                 }
                 if(response.code()==409){
                     //already exist
-                    Toast.makeText(SignUpActivity.this,"Exist", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUpActivity.this," Already Exist", Toast.LENGTH_SHORT).show();
 
 
                 }
